@@ -15,7 +15,7 @@ function Menu(props) {
     // );
     // chiveron is hidden by default in recent version of react-native-elements.
     return (
-      <ListItem key={index}>
+      <ListItem key={index} onPress={() => props.onPress(item.id)}>
         <Avatar
           title={item.name}
           source={require("./images/uthappizza.png")}
