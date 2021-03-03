@@ -414,3 +414,18 @@ Conclusions
 In this exercise you installed the create-react-native-app CLI tool and created a basic React Native project and served up the compiled project to your mobile device.
 
 
+Exercise (Instructions): React Native Components Part 2
+Objectives and Outcomes
+In this exercise you will continue to develop the app by adding another component, and understand how you can respond to user interactions with the UI. At the end of this exercise you will be able to:
+1.Respond to user interactions with the UI,
+2.Implement a hierarchy of components in your app.
+3.Use a Card RNE component.
+
+1.Displaying Dish Details
+  Add a file named DIshdetailComponent.js in the components folder and add code to it
+  Then, open MainComponent.js and update it
+  Then update MenuComponent.js
+  Save all the changes and do a Git commit with the message "Components Part 2".
+
+Conclusions
+In this exercise you added more components and used the Card RNE component.
