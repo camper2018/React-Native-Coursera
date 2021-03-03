@@ -1,0 +1,416 @@
+Exercise (Instructions): Setting up Git
+Objectives and Outcomes
+In this exercise you will learn to install Git on your computer. Git is required for using all the remaining Node.js and Node based tools that we encounter in the rest of the course. At the end of this exercise, you would be able to:
+
+1.Install Git on your computer
+2.Ensure that Git can be used from the command-line or command-prompt on your computer
+3.Set up some of the basic global configuration for Git
+
+1.Downloading and Installing Git
+  To install Git on your computer, go to https://git-scm.com/downloads to download the Git installer for your specific computing platform.
+  Then, follow the installation steps as you install Git using the installer.
+  You can find more details about installing Git at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git.
+  This document lists several ways of installing Git on various platforms.
+  Installing some of the GUI tools like GitHub Desktop will also install Git on your computer.
+  On a Mac, setting up XCode command-line tools also will set up Git on your computer.
+  You can choose any of the methods that is most convenient for you.
+
+2.Some Global Configuration for Git
+  Open a cmd window or terminal on your computer.
+  Check to make sure that Git is installed and available on the command line, by typing the following at the command prompt:
+    git --version
+  To configure your user name to be used by Git, type the following at the prompt:
+    git config --global user.name "Your Name"
+  To configure your email to be used by Git, type the following at the prompt:
+    git config --global user.email <your email address>
+  You can check your default Git global configuration, you can type the following at the prompt:
+    git config --list
+
+Conclusions
+At the end of this exercise you should have Git available on the command-line of your computer.
+
+Exercise (Instructions): Basic Git Commands
+Objectives and Outcomes
+In this exercise you will get familiar with some basic Git commands. At the end of this exercise you will be able to:
+
+1.Set up a folder as a Git repository
+2.Perform basic Git operations on your Git repository
+
+1.Basic Git Commands
+  At a convenient location on your computer, create a folder named git-test.
+  Open this git-test folder in your favorite editor.
+  Add a file named index.html to this folder, and add the following HTML code to this file:
+  <!DOCTYPE html>
+  <html>
+      <head></head>
+
+      <body>
+          <h1>This is a Header</h1>
+      </body>
+  </html>
+
+2.Initializing the folder as a Git repository
+  Go to the git-test folder in your cmd window/terminal and type the following at the prompt to initialize the folder as a Git repository:
+    git init
+
+3.Checking your Git repository status
+  Type the following at the prompt to check your Git repository's status:
+    git status
+
+  Adding files to the staging area
+  To add files to the staging area of your Git repository, type:
+    git add .
+
+4.Commiting to the Git repository
+  To commit the current staging area to your Git repository, type:
+    git commit -m "first commit"
+5.Checking the log of Git commits
+  To check the log of the commits to your Git repository, type
+    git log --oneline
+  Now, modify the index.html file as follows:
+  <!DOCTYPE html>
+  <html>
+      <head></head>
+
+      <body>
+          <h1>This is a Header</h1>
+          <p>This is a paragraph</p>
+      </body>
+  </html>
+
+  Add a sub-folder named templates to your git-test folder, and then add a file named test.html to the templates folder. Then set the contents of this file to be the same as the index.html file above.
+  Then check the status and add all the files to the staging area.
+  Then do the second commit to your repository
+  Now, modify the index.html file as follows:
+  <!DOCTYPE html>
+  <html>
+      <head></head>
+
+      <body>
+          <h1>This is a Header</h1>
+          <p>This is a paragraph</p>
+          <p>This is a second paragraph</p>
+      </body>
+  </html>
+  Now add the modified index.html file to the staging area and then do a third commit.
+6.Checking out a file from an earlier commit
+  To check out the index.html from the second commit, find the number of the second commit using the git log, and then type the following at the prompt:
+    git checkout <second commit's number> index.html
+
+7.Resetting the Git repository
+  To discard the effect of the previous operation and restore index.html to its state at the end of the third commit, type:
+    git reset HEAD index.html
+  Then type the following at the prompt:
+    git checkout -- index.html
+  You can also use git reset to reset the staging area to the last commit without disturbing the working directory.
+
+Conclusions
+At the end of this exercise you should have learnt some basic Git commands. Experiment with these commands until you fully understand how to use Git.
+
+Exercise (Instructions): Online Git Repositories
+Objectives and Outcomes
+In this exercise you will learn about how to set up and use an online Git repository and synchronize your local Git repository with your online repository. At the end of this exercise, you will be able to:
+
+1.Set up the online repository as a remote repository for your local Git repository
+2.Push your commits to the online repository
+3.Clone an online Git repository to your computer
+
+Setting up an Online Git repository
+  Sign up for an account either at Bitbucket (https://bitbucket.org) or GitHub (https://github.com).
+  Then set up an online Git repository named git-test. Note the URL of your online Git repository.
+  Note that private repositories on GitHub requires a paid account, and is not available for free accounts.
+
+Set the local Git repository to set its remote origin
+  At the prompt, type the following to set up your local repository to link to your online Git repository:
+    git remote add origin <repository URL>
+
+Pushing your commits to the online repository
+  At the prompt, type the following to push the commits to the online repository:
+    git push -u origin master
+
+Cloning an online repository
+  To clone an online repository to your computer, type the following at the prompt:
+    git clone <repository URL>
+
+Conclusions
+In this exercise you have learnt to set up an online Git repository, synchronize your local repository with the remote repository, and clone an online repository.
+
+Exercise (Instructions): Basics of Node.js and NPM
+Objectives and Outcomes
+In this exercise you will learn the basics of Node and NPM. At the end of this exercise, you will be able to:
+
+1.Set up package.json file in the project folder for configuring your Node and NPM for this project
+2.Install a NPM module and make use of it within your project
+
+1.Initializing package.json
+  At the command prompt in your git-test folder, type:
+    npm init
+  Follow along the prompts and answer the questions as follows: accept the default values for most of the entries, except set the entry point to index.html
+  This should create a package.json file in your git-test folder.
+
+2.Installing an NPM Module
+  Install an NPM module, lite-server, that allows you to run a Node.js based development web server and serve up your project files. To do this, type the following at the prompt:
+  npm install lite-server --save-dev
+
+  You can check out more documentation on lite-server here.
+  Next, open package.json in your editor and modify it as shown below.
+  Note the addition of two lines, line 7 and line 9.
+  {
+  "name": "git-test",
+  "version": "1.0.0",
+  "description": "This is the Git and Node basic learning project",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jogesh_k_muppala@bitbucket.org/jogesh_k_muppala/git-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/jogesh_k_muppala/git-test#readme",
+  "devDependencies": {
+    "lite-server": "^2.2.2"
+  }
+}
+  Next, start the development server by typing the following at the prompt:
+    npm start
+
+  This should open your index.html page in your default browser.
+  If you now open the index.html page in an editor and make changes and save, the browser should immediately refresh to reflect the changes.
+
+3.Setting up .gitignore
+  Next, create a file in your project directory named .gitignore (Note: the name starts with a period)Then, add the following to the .gitignore file
+    node_modules
+
+  Then do a git commit and push the changes to the online repository. You will note that the node_modules folder will not be added to the commit, and will not be uploaded to the repository.
+
+Conclusions
+In this exercise you learnt to set up package.json, install a npm package and start a development server.
+
+Introduction to React Native: Objectives and Outcomes
+In this lesson you will learn about Hybrid mobile application development. In particular, you will be introduced to React Native. You will also briefly review the Expo framework. At the end of this lesson, you will be able to:
+1.Explain the salient features of hybrid mobile application development
+2.Set up and scaffold a React Native application using create-react-native-app.
+3.Learn about the Expo framework way of developing React Native applications.
+
+Hybrid Mobile App Development:
+Let us now briefly talk about hybrid mobile app development.
+As we already know there are two dominant mobile app platforms, Android and iOS.
+Now these platforms, if you wish to double up mobile applications you could go the native way using the native development environments and the native tools to develop applications for these two platforms and their corresponding languages, Java or Cotelin in case of Android and Objective-C or Swift in case of iOS.
+Now, this gives you the full ability to access all the features of the native platform in order to make use of them within your mobile application, but of course this means that if you need to develop a mobile app targeting both the platforms, then you need to have two separate code bases targeting each of the two platforms and then do the development in two different languages for each of the two platforms.
+Now, the mobile app development community has approached this problem trying to resolve the issue of having to maintain separate core bases.
+Instead, the question is, can we do mobile app development using a single cord base but still be able to target both the platforms?
+Now one easy approach to take in this case is to use the mobile website as a way of reaching into the mobile platform.
+So this is where we allow the mobile device users to use their built in browser to be able to access a mobile site.
+Thus the users are able to obtain information directly from the mobile website.
+This of course means that their application itself is fully hosted in the mobile browser and with a a slower side being supported by us and this is obviously the slowest way of reaching into the mobile platform.
+And also, this approach has very limited capability of reaching into that native device features of either of the two mobile platforms, of course this is improving day by day.
+Nowadays using the mobile browser approach you can get access to a lot more of the native capabilities.
+Including things like location and even local storage on that mobile device.
+But still there are limitations on what you can get access to within that mobile devices themselves.
+Now the other approach that people have adopted is to use what is called as the hybrid mobile application development with the WebView being used for this purpose.
+Now in this case, with the WebView both iAndroid and iOS have a WebView which is a widget that is part of both the platforms that you can use when you design the user interface for your mobile application.
+So part of the screen can be occupied by the WebView widget and once that WebView widget is included in your screen layout then you can easily target the content within the WebView widget using the standard web technologies like HTML, CSS, and JavaScript.
+And also even going to the extent of using frameworks like Bootstrap to design the content with responsive approach.
+But of course, this approach is too slow compared to the native approach.
+And it doesn't get access to all the capabilities of the devices.
+Now an example of using this approach would be the ionic framework which also uses the Cordova framework underneath for getting access to the Native device capabilities.
+Now interestingly, a lot of the native capabilities can easily be leveraged through the Cordova framework and be able to access that within the WebView of your applications.
+Now, so this is the other approach. But again, there are limitations again to using this approach.
+Now, looking at this, the mobile app development community design yet another way of reaching into that mobile platform.
+What it's called is a compiled, interpreted or a VM Hybrid based approach.
+In this case, what we realize is that both Both Android and iOS have a built in JavaScript engine which they leverage for supporting their browsers.
+So if we can then leverage this JavaScript engine that is part of both Android and also iOS.
+In case of Android it is the V8 engine and in case of iOS it is the JavaScript core.
+Now, if we can write our applications using JavaScript but then be able to run this JavaScript application on top of the virtual machine, of the JavaScript virtual machine that is included in both the platforms, then we will be able to get access into the native device capabilities.
+There have been many attempts at using this approach for getting access to that mobile device native capabilities.
+React native and NativeScript are two such examples of use of this compiled or interpreted or the VM Hybrid approach.
+Let's talk briefly about these two approaches, the Hybrid approach with the WebView and the Compiled Interpreted or a VM Hybrid approach in the little more detail in the next slide.
+So again, talking about the Hybrid App development approaches.
+As I mentioned in the previous slide, you have the WebView approach where you can still use the HTML, CSS and JavaScript to design your user interface and then be able to run this code in the WebView that is included in the layout of your application.
+And as I mentioned, ionic plus Cordova, our PhoneGap is an example of this kind of an approach.
+Now the advantage of using this is that you get a mobile app which feels native, or at least near native because you can install the mobile app on to the mobile device and so it'll fill part of the mobile devices various applications that are already installed.
+And so the user invokes app just like they invoke in native mobile application.
+This is contrast to using the mobile web approach where you expect the user to first fire up a browser and then type in the address of the mobile site and then go and actively access the mobile site.
+So the WebView approach is already getting closer to a native way of providing access to the application.
+
+Now, again, as I mentioned in the previous slide, the WebView approach has limitations.
+Now this is where the compiled,interpreted and hybrid approach has been adopted and in this case we maintain the major code off of an application code base in a single language.
+Typically JavaScript, for example, when you use react native or you use a native script.
+The code is itself written in JavaScript.
+Actually it's the business logic code is written in JavaScript.
+Then you get access to the native widgets on the tool platforms to layout the user interface.
+Now, exactly how is this done in react native? We will talk about that in the next lecture in this lesson.
+So again, as I have already mentioned, React Native and NativeScript are two approaches that use JavaScript as the language of choice for development and then be able to access it in the native device capabilities.
+There are other platforms like Appcelerator Titanium, Xamarin, which uses C sharp as an approach for doing development, Embarcadero FireMonkey and many more in the mobile development world.
+So again, summarizing, there are different types of frameworks that are aimed to build hybrid apps.
+So again, whether you use the WebView approach or the compiled approach that we talked about in the previous slide.
+So Frameworks that use HTML5 content to target like Ionic + Cordova or Ionic + Phonegap.
+Frameworks like React Native and NativeScript which still allow you to do your application development in JavaScript and then be able to access the Native device capabilities by leveraging the Native UI widgets while doing the user interface layout.
+Similarly, you have frameworks like Unity, which is used for doing 3D games environment.
+Unity is based upon CSharp or JavaScript as their approach but it is purely targeted at developing mobile games.
+Kivy, which is a python based approach and similarily libgdx, which uses Java and more game oriented and targeted at the android platform.
+An then you have commercial frameworks like Xamarin or Emcarcadero.
+Xamarin using CSharp as the language of development choice.
+Talking about the advantages of the hybrid approach, of course you already probably realized that some of the advantages of the hybrid approach you have a single code base.
+And you can leverage the existing skips if you are already a well versed JavaScript developer, then doing applications in react native or not a native script is fairly straight forward for you because you can leverage your JavaScript skills for doing development.
+In this course we will actually learn about how React Native leverages JavaScript plus the React framework to enable us to double up React Native applications.
+Similarly, you have a single code base which enables you to target multiple platforms, Android and IOS in this case.
+And thirdly, you have reduced development time and cost because you have a single code base and the fact that you are able to reuse your existing development skills means that you don't need to train originally in three different platforms to be able to target the web and the two mobile platforms for your use.
+Also, they provide you with an easy way of targeting various form factors all the way from a web browser in a standard computer using the web technologies, than you can target the tablets and the mobile devices using responsive web design and so on.
+And also you can get access to some of the native features on the mobile device.
+And also with the ability of local storage both using mobile web, as well as using the WebView approach.
+As well as using the compiled approach that we have talked about, you get access to the native storage capabilities on the mobile devices.
+Typically you get access to something like a key value storage which enables you to store data on your mobile device itself for providing offline capabilities.
+And also, the fact that you are able to develop your mobile app and then be able to release the mobile app on the specific app stores, whether it is the Google Playstore or the iOS or the Apple store, means that you get immediate access to the mobile users that typically download applications from these stores and install on their mobile devices.
+So the visibility that you gain by doing a WebView app or a compiled app using either React Native, or NativeScript, or one of the other approaches, means that you are able to reach into the stores and get access to the mobile device as opposed to simply designing a mobile website where you expect the user to actively fire the browser to reach out to your mobile website.
+Of course, the Hybrid Approach comes with its own set of drawbacks.
+Now of course, as I've been mentioning, there are issues like performance issues that you will encounter.
+But for most, typical use cases that you will see, for mobile applications, this may not be a problem.
+The performance issues manifest themselves a lot more in cases where you are doing high performance games, or 3D games for your mobile devices.
+Now, that is where it may be better off to go native or at least use a gaming engine like Unity for developing 3D games and so on.
+The increased time and effort to be able to mimic the native UI feel, look and feel, again this is mitigated significantly with platforms like ionic plus cordova where ionic provides you with a major look and feel capability, and automatically adapts to the native look and feel of the tool platforms.
+Similarly, react native and native script, since they are all leveraging the native devices, UI rejects, that UI looks very much like a native application so you would be to tell the difference between a react native application as opposed to a fully native application.
+One more downside as I have emphasized, is that you may not be able to get access to all the native device features but again this is becoming less and less of an issue because many of the platforms are able to leverage most of the native device capabilities including things like the sensors built into your mobile devices.
+So which means that you would pretty soon hardly see any difference in terms of this particular issue, being able to get access to the native device capabilities.
+Now, one minor issue that we need to keep in mind is that when you use the hybrid approach there is that little bit of risk that the Apple store may reject your application, although increasingly we are finding less of a concern in this particular issue, because there are, indeed, a lot of applications that are designed using React Native script.
+And Ionic that are already on both the Android, as well as the iOS stores.
+So, this may be less of a concern as time goes by.
+You will be surprised that many of the mobile applications that you use are actually hybrid mobile applications without you even realizing that they are indeed Hybrid mobile applications.
+Take Facebook as an example, it is completely done using react native.
+Now where do hybrid approaches shine? In terms of their use cases? Now typically, hybrid approaches are again, as I said, is not suitable for all kinds of applications.
+But many use cases for mobile applications. Do not require true native capabilities, so you need to evaluate the target users, and the platforms of choice, and the app requirements, and be able to decide how you approach this platform.
+And for many content driven applications like business and productivity applications, enterprise applications, and even media applications.
+Like for example Spotify. Can you tell whether Spotify is a native app or a hybrid mobile app? Think about that question.
+So, these kind of apps definitely shine by using the hybrid approach. With this quick introduction to hybrid mobile application development, let's delve into React Native in the rest of this course.
+
+React Native:
+React Native is described as build native mobile apps using JavaScript and React.
+So that is why you need to have good knowledge of JavaScript, as well as React in order to make use of React Native.
+This is a real app that is built, of course, using JavaScript.
+But then, React actually runs on your mobile device.
+It will not look any different from an app that is built using the native approach.
+Furthermore, as we develop React Native applications, you will realize that React Native supports something like hot reloading.
+Meaning that as you edit your code, the modified version is automatically loaded into your app, and then it'll immediately reflect the changes within your app, as we will see when we do the exercises.
+If what React Native provides is insufficient to meet your needs, then you can always go native.
+Meaning that you can leverage the native platform by ejecting out of the React Native environment and then be able to do part of the application development using native approaches.
+Now that means that you would have to use platform specific code and platform specific features for that purpose.
+If you check out the various companies that are using React Native, there you have a small sample of the applications that are built using React Native.
+Things that you may not have realized that they are built using React Native.
+Let's get started and learn the basics of React Native.
+Having quickly paid a visit to the React Native website, let's summarize what we have just looked.
+We have learned that React Native is a cross-platform, native iOS and Android app building environment without using web views.
+Now, React Native, as you realize, is mainly focused on the front-end.
+And also, it uses React plus JavaScript for doing its development.
+And also, you get access to 100% of the native APIs via JavaScript.
+And then we reuse a lot of packages from NPM, also, in order to get access to the react environment.
+And React Native itself is backed by Facebook. And Facebook was the one that is behind React and also, correspondingly, React Native.
+And what more proof than to show that Facebook itself uses React Native for its mobile app that all of you are obviously familiar in using to access your Facebook.
+Now obviously, you may be wondering, how does React Native actually do its work?
+Here, I'll give you a brief, not necessarily a comprehensive view of how React Native actually works, but just sufficient enough for us to understand how React Native works.
+The actual details of how React Native actually accesses the native device capabilities and so on is not necessary for us to understand completely.
+Because we'll be mainly remaining within the React Native ecosystem while accessing the device capabilities.
+So when you go to any native platforms, so you have the entire native platform.
+So if you want to target the native platform, obviously, we realize that the only way to do so is to use the native development environment and the corresponding languages for the purpose.
+Now in this course, our idea is to use hybrid development using JavaScript as the language of choice.
+So we will look at the native platforms, the two native platforms, Android and iOS, the two halves of this entire landscape.
+And so how do we target each of these two platforms? So this is where we will understand that Android has the V8 JavaScript engine.
+And then iOS has the JavaScript code, JavaScript engine, which is used by the browsers in each of these platforms to run the JavaScript code already.
+So we have a virtual machine already that understands JavaScript and is able to run the JavaScript code, so why not build on top of that?
+And that is where React Native puts in its bridge into the native environment.
+The bridge that taps in though these virtual machines into the native devices capabilities.
+And on top of that, we built React Native itself, which is implemented in JavaScript and then partly implemented in native code.
+But that part is completely hidden from us. And so we access by writing React Native application code on top of the React Native framework.
+And the application code is completely written in JavaScript.
+Now when you need to render your user interface in either of the two platforms, then both of these will access the native UI elements, whether it is in Android or whether it is in iOS.
+They will access the native UI elements and then leverage them while rendering the user interface for both the platforms.
+Now this part is automatically taken care of for us by the React Native platform itself.
+And so we can live in the comfort of the JavaScript environment and write our code completely as if we are writing a React Native application and be able to leverage all of the native device's capabilities.
+In this context, we will also encounter the Expo SDK, which I will talk about in a little detail in the next lecture, in the exercise.
+And then also in a lot more detail in the last module of this course, where we will look at accessing the native device's capabilities in lot more detail.
+So how do we get started with React Native development?
+First and foremost, you used to go and access and install the React Native development tools.
+And we're going to leverage the create-react-native-app command line tool to enable us to do our React Native development.
+The create-react-native-app tool sets up the entire ecosystem for our React Native app development.
+It sets up all the things, like if you read about React Native, you would hear people mentioning about Babel and then doing transpiling and things like that.
+We are completely isolated from that part by using the React Native app, because that sets up this whole environment for us.
+And so we are left in the comfort of doing just JavaScript application development.
+And that's the reason why I chose to leverage the create-react-native-app way of doing React Native development.
+Now once we install that, then we will be able to scaffold out a React Native app by simply saying, create-react-native-app, and then give a project name to that.
+And then it'll scaffle out the project directory with the necessary files to get you started in React Native app development.
+This is exactly what we will do in the very next exercise that follows this lecture.
+And the create-react-native-app leverages the Expo SDK for helping us to setup the environment where we can comfortably do our React Native app development.
+And so we will explore Expo SDK briefly in the next lecture, and then also examine it in more detail in the last module.
+With this quick understanding of React Native, let's move on to get some hands on experience with development React Native applications.
+
+Exercise (Instructions):Getting Started with React Native
+Objectives and Outcomes
+In this exercise you will set up the create-react-native-app for scaffolding a React Native starter application on your computer.
+Also this will use the Expo framework for React Native app development.
+At the end of this exercise, you will be able to:
+1.Set up the create-react-native-app for scaffolding a React Native starter application on your computer
+2.Use the Expo framework .
+
+1.Installing Yarn
+  Yarn is another package manager like NPM, but is better suited and faster to work with for React applications.
+  So let us install yarn and use it for building our React applications.
+  To install Yarn, you can find the instructions for your specific platform at https://yarnpkg.com/en/docs/install.
+  If you choose not to install Yarn, you can continue to use npm in place of yarn without any problem.
+
+2.Setting up the create-react-native-app
+  First install expo-cli to run app using expo:
+    npm install -g expo-cli
+  To install the create-react-native-app command, at the prompt type:
+    npm install -g create-react-native-app@1.0.0 or
+    yarn global add create-react-native-app@1.0.0
+
+  If you are installing on OSX or Linux, make sure to precede with sudo.
+  Alternately, you can use npm and type "npm install -g create-react-native-app@1.0.0" at the prompt.
+  This will make the command line tool for creating React Native applications.
+  To learn more about the various commands that this CLI provides, type at the prompt:
+    create-react-native-app --help
+  To check where your app is installed:
+    which create-react-native-app
+
+3.Generating and Serving a React Project using create-react-app
+  At a convenient location on your computer, create a folder named ReactNative and move into that folder.
+  Then type the following at the prompt to create a new React Native application named confusion:
+    create-react-native-app confusion
+  This should create a new folder named confusion within your ReactNative folder and create the React Native application in that folder.
+  Move to the confusion folder and type the following at the prompt:
+  yarn start
+  This will compile the project and then start serving the project at the address exp://<Your Computer's IP address>:19000.
+
+  Alternatively:
+  To open app using expo-cli:
+  expo init confusion
+  This will create new confusion folder with react native app inside the folder.
+  Move to the confusion folder and type the following at the prompt:
+  yarn web
+  This will compile the project and then start serving the project at the address exp://<Your Computer's IP address>:19006.
+4.Running your React Native application
+  Install the Expo client app on your iOS or Android phone and connect to the same wireless network as your computer.
+  On Android, use the Expo app to scan the QR code from your terminal to open your project. On iOS, follow on-screen instructions to get a link.
+  This provides the best experience for implementing and testing your application on a real device.
+
+5.Running your app on a simulator or virtual device
+  Create React Native App makes it really easy to run your React Native app on a physical device without setting up a development environment.
+  If you want to run your app on the iOS Simulator or an Android Virtual Device, please refer to the instructions for building projects with native code given here to learn how to install Xcode and set up your Android development environment.
+  Once you've set these up, you can launch your app on an Android Virtual Device by running npm run android, or on the iOS Simulator by running npm run ios (macOS only).
+
+6.Setting up a Git repository
+  You can initialize your project to be a Git repository by typing the following commands at the prompt:
+    git init
+    git add .
+    git commit -m "Initial Setup"
+  Thereafter you can set up an online Git repository and synchronize your project to the online repository.
+  Make sure that the online Git repository is a private repository.
+
+Conclusions
+In this exercise you installed the create-react-native-app CLI tool and created a basic React Native project and served up the compiled project to your mobile device.
+
+
