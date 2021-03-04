@@ -8,8 +8,18 @@ function RenderDish(props) {
   if (dish != null) {
     return (
       <Card>
-        <Card.Title>{dish.name}</Card.Title>
-        <Card.Image source={require("./images/uthappizza.png")}></Card.Image>
+        {/* <Card.Title>{dish.name}</Card.Title> */}
+        <Card.Image source={require("./images/uthappizza.png")}>
+          <Card.FeaturedTitle
+            style={{
+              textAlign: "center",
+              textAlignVertical: "center",
+              lineHeight: 150,
+            }}
+          >
+            {dish.name}
+          </Card.FeaturedTitle>
+        </Card.Image>
         <Text style={{ margin: 10 }}>{dish.description}</Text>
       </Card>
     );

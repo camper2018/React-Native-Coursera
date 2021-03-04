@@ -472,3 +472,18 @@ In this exercise we continue to develop navigation support for our application. 
 Conclusions
 In this exercise we have set up drawer-based navigation in our app using the Drawer Navigator.
 
+Exercise (Instructions): React Native Navigation Part 3
+Objectives and Outcomes
+In this exercise we will update our Home component to display useful information.
+At the end of this exercise you will be able to:
+1. Set up another Component within your app
+
+1.Updating Home Component
+  Download the comments.js, leaders.js and promotions.js given above and move them to the shared folder.
+  Open HomeComponent.js and update it
+  Save all the changes and do a Git commit with the message "Navigation Part 3".
+
+Conclusions
+In this exercise we updated the Home component in our app.
+
+

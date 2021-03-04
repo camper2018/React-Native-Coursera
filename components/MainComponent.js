@@ -56,7 +56,10 @@ function HomeStackScreen() {
 const MainNavigator = createDrawerNavigator();
 function MainDrawerScreen() {
   return (
-    <MainNavigator.Navigator>
+    <MainNavigator.Navigator
+      initialRouteName="Home"
+      drawerStyle={{ backgroundColor: "#D1C4E9" }}
+    >
       <MainNavigator.Screen name="Home" component={HomeStackScreen} />
       <MainNavigator.Screen name="Menu" component={MenuStackScreen} />
     </MainNavigator.Navigator>
