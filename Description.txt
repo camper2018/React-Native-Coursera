@@ -429,3 +429,32 @@ In this exercise you will continue to develop the app by adding another componen
 
 Conclusions
 In this exercise you added more components and used the Card RNE component.
+
+React Native Navigation: Objectives and Outcomes
+In this lesson you will learn about support for navigation among the views in your React Native app using React Navigation. As you will learn, React Navigation supports navigation among views that is typical in mobile apps. At the end of this lesson you will be able to:
+
+Set up your application to use React Navigation based navigation support to enable navigation among the various "pages" of your app
+Use React Navigation to design a side drawer for navigation support in your app
+
+
+Exercise (Instructions): React Native Navigation Part 1
+
+Objectives and Outcomes
+In this exercise we will explore navigation support for our React Native application using React Navigation, providing mobile app like navigation among the views. At the end of this exercise you will be able to:
+1.Configure your React Native application with navigation support
+2.Use the Stack Navigator from React Navigation to provide stack like navigation among the views
+3.Enable the passing of information among views using navigation parameters
+
+1.Installing React Navigation
+  Install React Navigation into your project by typing the following at the prompt:
+  yarn add @react-navigation/native
+2.Install dependencies:
+  expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+3.Open MenuComponent.js and update it.
+4.Then, open DishdetailComponent.js and update it.
+5.Then, open MainComponent.js and update it.
+6.Save all the changes and do a Git commit with the message "Navigation Part 1".
+
+Conclusions
+In this exercise we have configured navigation support within our app using React Navigation.
+

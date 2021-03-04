@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { Card } from "react-native-elements";
+import { DISHES } from "../shared/dishes";
 
 function RenderDish(props) {
   const dish = props.dish;
@@ -17,7 +18,19 @@ function RenderDish(props) {
   }
   h;
 }
-function Dishdetail(props) {
-  return <RenderDish dish={props.dish} />;
+class Dishdetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dishes: DISHES,
+    };
+  }
+
+  render() {
+    // navigation and route props are passed to all the screen components by Stack Navigator
+    const dishId = this.props.route.params.dishId;
+    // the plus in [+dishId] will convert dishId string into a number
+    return <RenderDish dish={this.state.dishes[+dishId]} />;
+  }
 }
 export default Dishdetail;
