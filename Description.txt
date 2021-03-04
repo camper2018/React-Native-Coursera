@@ -458,3 +458,17 @@ In this exercise we will explore navigation support for our React Native applica
 Conclusions
 In this exercise we have configured navigation support within our app using React Navigation.
 
+Exercise (Instructions): React Native Navigation Part 2
+Objectives and Outcomes
+In this exercise we continue to develop navigation support for our application. We explore the use of side drawer set up with React Navigation's Drawer Navigator support. At the end of this exercise you will be able to:
+1.Configure your application with drawer based navigation using the Drawer Navigator
+2.Set up and configure the side drawer to support drawer based navigation
+
+1.Drawer-based Navigation:
+  Add a new file named HomeComponent.js in the components folder and update it
+  Update MainComponent.js to support drawer-based navigation.
+  Save all the changes and do a Git commit with the message "Navigation Part 2".
+
+Conclusions
+In this exercise we have set up drawer-based navigation in our app using the Drawer Navigator.
+
