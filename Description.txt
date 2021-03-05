@@ -1,6 +1,8 @@
 Exercise (Instructions): Setting up Git
 Objectives and Outcomes
-In this exercise you will learn to install Git on your computer. Git is required for using all the remaining Node.js and Node based tools that we encounter in the rest of the course. At the end of this exercise, you would be able to:
+In this exercise you will learn to install Git on your computer.
+Git is required for using all the remaining Node.js and Node based tools that we encounter in the rest of the course.
+At the end of this exercise, you would be able to:
 
 1.Install Git on your computer
 2.Ensure that Git can be used from the command-line or command-prompt on your computer
@@ -486,4 +488,58 @@ At the end of this exercise you will be able to:
 Conclusions
 In this exercise we updated the Home component in our app.
 
+In this assignment you will complete the remaining two components, About Us and Contact Us that you will add to the application.
+You will use the Card layout that we created in the other pages for displaying the information, and the FlatList to design the pages.
+
+Step-By-Step Assignment Instructions:
+Assignment Overview
+In this assignment, you will update the React Native app to add the "Contact Us" and "About Us" views.
+
+Assignment Requirements
+Task 1:
+In this task, you will add the Contact Us view to show the address of the restaurant as shown in the picture below:
+Add a new file named ContactComponent.js to the components folder
+You should display the address as shown in the image. The address information is provided in the text file Assignment1.txt above.
+You can use the Card layout that we used in the other pages to design this page.
+
+Task 2
+In this task, you will add the About Us view to show the history and list of corporate leaders of the restaurant.
+Add a new file named AboutComponent.js to thecomponents folder.
+You will use the Card layout to display the history.
+The History information is provided in the text file Assignment1.txt above.
+This should be implemented in a functional component named History().
+The corporate leadership information is obtained from the leaders.js file in the shared folder.
+The information about the leaders is displayed using a FlatList with ListItem as shown below.
+This should be rendered in the body of a Card with the title "Corporate Leadership".
+
+Task 3
+In this task, you will update the MainComponent class in the MainComponent.js file:
+You need to include the AboutComponent  as a Stack Navigator, and then include it within the DrawerNavigator, just as we did with HomeComponent.
+This will enable navigation to the About Us view.
+You need to include the ContactComponent as a Stack Navigator, and then include it within the DrawerNavigator, just as we did with HomeComponent.
+This will enable navigation to the Contact Us view.
+
+Icon Fonts and Buttons: Objectives and Outcomes
+
+In this lesson we will review how icon fonts like Font-Awesome can be used within our React NativeS application.
+We will also see the use of buttons in the application.
+At the end of this lesson you will be able to:
+Use icon fonts in your app
+Use buttons in the app
+
+There are many icon font packs that are available that are very popularly used.
+Font Awesome is one such popular icon pack.
+Similarly, we have Material Icons, IonIcons, and a lot more.
+Your React Native application can make use of many of these icon fonts.
+Now how do we use icons in our application?
+Now this is where the React Native elements provides an icon component which allows you to specify the use of icons within your application.
+By default, when you specify a property called name to an icon component, that uses the corresponding material icons.
+Now, you can also use a type prop on the icon component to specify other kinds of icon font families,
+like font-awesome, material-community, octicon, ionicon, and so on, a big list of icon fonts that are supported by the icon from React Native Elements.
+Now we can also use things like the reverse and the raised property on the icons that we use in our application to add a lot of value.
+Now, in the exercise, we will explore how to make use of the icon to add icon and icon-like buttons to our application.
+The icons themselves, when you use the icon component from React Native Elements, it also supports the onPress on the icon to enable you to interact with the icon.
+And you can respond to user interaction.
+Buttons in React Native, you can easily use the built-in button component in React Native or you can import other button types.
+For example, React Native Elements adds its own kind of buttons, which adds value to the button type in React Native and allows you to define more styled buttons to use within your application.
 

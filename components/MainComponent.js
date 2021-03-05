@@ -7,6 +7,8 @@ import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./HomeComponent";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import Contact from "./ContactComponent";
+import About from "./AboutComponent";
 
 // Using Stack Navigator
 const MenuNavigator = createStackNavigator();
@@ -51,6 +53,42 @@ function HomeStackScreen() {
     </HomeNavigator.Navigator>
   );
 }
+const ContactNavigator = createStackNavigator();
+function ContactStackScreen() {
+  return (
+    <ContactNavigator.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#512DA8" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { color: "#fff" },
+      }}
+    >
+      <ContactNavigator.Screen
+        name="Contact Us"
+        component={Contact}
+        options={{ title: "Contact Us", drawerLabel: "Contact Us" }}
+      />
+    </ContactNavigator.Navigator>
+  );
+}
+const AboutNavigator = createStackNavigator();
+function AboutStackScreen() {
+  return (
+    <AboutNavigator.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#512DA8" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { color: "#fff" },
+      }}
+    >
+      <AboutNavigator.Screen
+        name="About Us"
+        component={About}
+        options={{ title: "About Us", drawerLabel: "About Us" }}
+      />
+    </AboutNavigator.Navigator>
+  );
+}
 // Using Drawer-Based Navigation
 
 const MainNavigator = createDrawerNavigator();
@@ -62,6 +100,8 @@ function MainDrawerScreen() {
     >
       <MainNavigator.Screen name="Home" component={HomeStackScreen} />
       <MainNavigator.Screen name="Menu" component={MenuStackScreen} />
+      <MainNavigator.Screen name="Contact Us" component={ContactStackScreen} />
+      <MainNavigator.Screen name="About Us" component={AboutStackScreen} />
     </MainNavigator.Navigator>
   );
 }
