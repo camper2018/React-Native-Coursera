@@ -543,3 +543,23 @@ And you can respond to user interaction.
 Buttons in React Native, you can easily use the built-in button component in React Native or you can import other button types.
 For example, React Native Elements adds its own kind of buttons, which adds value to the button type in React Native and allows you to define more styled buttons to use within your application.
 
+Exercise (Instructions): Buttons and Icons
+Objectives and Outcomes
+In this exercise you will learn about using buttons and icons in buttons. Also you will learn how to respond to button clicks. You will also learn to customize the side drawer. At the end of this exercise you will be able to:
+1.Add buttons and icons to your app
+2.Respond to button clicks within your app
+3.Customizing the side drawer in the Drawer Navigation.
+
+1.Displaying Comments
+  Open DishdetailComponent.js and update it to display the comments about the dish
+
+2.Marking Favorites
+  Furthermore, update DishdetailComponent.js to add a icon Button to mark the dish as a favorite.
+3.Custom Drawer
+  Next, open MainComponent.js and update it to create a custom drawer
+4.Save all the changes and do a Git commit with the message "Icons and Buttons".
+
+Conclusions
+In this exercise you have learnt to add icon buttons to your app and also customize the side drawer.
+
+

@@ -8,7 +8,7 @@ import { ScrollView, View } from "react-native-gesture-handler";
 
 // Using VirtualizedView function to remove warning that occurs when nesting FlatList inside ScrollView due to performance issues.
 // This warning was not seen with older versions of react-native-elements.
-function VirtualizedView(props) {
+export function VirtualizedView(props) {
   return (
     <FlatList
       data={[]}
