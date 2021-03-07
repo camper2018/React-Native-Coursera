@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView, FlatList } from "react-native";
 import { Card, Icon } from "react-native-elements";
-// import { DISHES } from "../shared/dishes";
-// import { COMMENTS } from "../shared/comments";
+
 import { VirtualizedView } from "./AboutComponent";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
@@ -18,7 +17,6 @@ function RenderDish(props) {
   if (dish != null) {
     return (
       <Card>
-        {/* <Card.Image source={require("./images/uthappizza.png")}> */}
         <Card.Image source={{ uri: baseUrl + dish.image }}>
           <Card.FeaturedTitle
             style={{
@@ -78,8 +76,6 @@ class Dishdetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // dishes: DISHES,
-      // comments: COMMENTS,
       favorites: [],
     };
   }

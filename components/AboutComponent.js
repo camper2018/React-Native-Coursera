@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { Text, SafeAreaView, VirtualizedList } from "react-native";
+import { Text } from "react-native";
 import { Card } from "react-native-elements";
-// import { LEADERS } from "../shared/leaders";
 import { FlatList } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
-// import { ScrollView, View } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -33,7 +32,7 @@ const History = () => {
     <Card>
       <Card.Title>Our History</Card.Title>
       <Card.Divider />
-      <Text style={{ margin: 10, fontWeight: "700" }}>
+      <Text style={{ margin: 10 }}>
         Started in 2010, Ristorante con Fusion quickly established itself as a
         culinary icon par excellence in Hong Kong. With its unique brand of
         world fusion cuisine that can be found nowhere else, it enjoys patronage
@@ -42,7 +41,7 @@ const History = () => {
         on your plate the next time you visit us.
       </Text>
 
-      <Text style={{ margin: 10, fontWeight: "700" }}>
+      <Text style={{ margin: 10 }}>
         The restaurant traces its humble beginnings to The Frying Pan, a
         successful chain started by our CEO, Mr. Peter Pan, that featured for
         the first time the world's best cuisines in a pan.
@@ -52,25 +51,17 @@ const History = () => {
 };
 
 class About extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     leaders: LEADERS,
-  //   };
-  // }
   render() {
     const RenderLeaders = ({ item, index }) => {
-      // const { navigate } = this.props.navigation;
       return (
         <ListItem key={index}>
           <Avatar
             title={item.name}
-            // source={require("./images/alberto.png")}
             source={{ uri: baseUrl + item.image }}
             rounded={true}
           />
           <ListItem.Content>
-            <ListItem.Title style={{ fontWeight: "bold" }}>
+            <ListItem.Title style={{ fontWeight: "700", paddingBottom: 10 }}>
               {item.name}
             </ListItem.Title>
             <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
@@ -78,21 +69,42 @@ class About extends Component {
         </ListItem>
       );
     };
-
-    return (
-      <VirtualizedView>
-        <History />
-        <Card>
-          <Card.Title>Corporate Leadership</Card.Title>
-          <Card.Divider />
-          <FlatList
-            data={this.props.leaders.leaders}
-            renderItem={RenderLeaders}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </Card>
-      </VirtualizedView>
-    );
+    if (this.props.leaders.isLoading) {
+      return (
+        <VirtualizedView>
+          <History />
+          <Card>
+            <Card.Title>Corporate Leadership</Card.Title>
+            <Loading />
+          </Card>
+        </VirtualizedView>
+      );
+    } else if (this.props.leaders.errMess) {
+      return (
+        <VirtualizedView>
+          <History />
+          <Card>
+            <Card.Title>Corporate Leadership</Card.Title>
+            <Text>{this.props.leaders.errMess}</Text>
+          </Card>
+        </VirtualizedView>
+      );
+    } else {
+      return (
+        <VirtualizedView>
+          <History />
+          <Card>
+            <Card.Title>Corporate Leadership</Card.Title>
+            <Card.Divider />
+            <FlatList
+              data={this.props.leaders.leaders}
+              renderItem={RenderLeaders}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </Card>
+        </VirtualizedView>
+      );
+    }
   }
 }
 

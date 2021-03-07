@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { FlatList } from "react-native";
-// import { ListItem, Avatar } from "react-native-elements";
-import { Tile, Avatar } from "react-native-elements";
-// import { DISHES } from "../shared/dishes";
+import { FlatList, View, Text } from "react-native";
+import { Tile } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-
+import { Loading } from "./LoadingComponent";
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
@@ -13,13 +11,6 @@ const mapStateToProps = (state) => {
 };
 
 class Menu extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     dishes: DISHES,
-  //   };
-  // }
-
   render() {
     const renderMenuItem = ({ item, index }) => {
       const { navigate } = this.props.navigation;
@@ -31,27 +22,26 @@ class Menu extends Component {
           featured
           onPress={() => navigate("Dishdetail", { dishId: item.id })}
           imageSrc={{ uri: baseUrl + item.image }}
-        >
-          {/* <Avatar
-            title={item.name}
-            source={{ uri: baseUrl + item.image }}
-            rounded={true}
-          /> */}
-          {/* <Tile.Content>
-            <Tile.Title style={{ fontWeight: "bold" }}>{item.name}</Tile.Title>
-            <Tile.Subtitle>{item.description}</Tile.Subtitle>
-          </Tile.Content> */}
-        </Tile>
+        />
       );
     };
-
-    return (
-      <FlatList
-        data={this.props.dishes.dishes}
-        renderItem={renderMenuItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    );
+    if (this.props.dishes.isLoading) {
+      return <Loading />;
+    } else if (this.props.dishes.errMess) {
+      return (
+        <View>
+          <Text>{this.props.dishes.errMess}</Text>
+        </View>
+      );
+    } else {
+      return (
+        <FlatList
+          data={this.props.dishes.dishes}
+          renderItem={renderMenuItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      );
+    }
   }
 }
 

@@ -589,9 +589,9 @@ At the end of this exercise, you will be able to:
   At any convenient location on your computer, create a new folder named json-server, and move to this folder.
   Download the db.json file provided above to this folder.
   Move to this folder in your terminal window, and type the following at the command prompt to start the server:
-    json-server --watch db.json -p 3001 -H 192.168.86.21
+    json-server --watch db.json -p 3001 -d 2000 -H 192.168.86.21
     or
-    json-server --watch db.json --host 192.168.86.21 -p 3001
+    json-server --watch db.json --host 192.168.86.21 -p 3001 -d 2000
 
     json-server --watch db.json -p 3001 -d 2000 ---> this is not working
     -p flag is for port number and -d 2000 will delay the response from server by 2000s to mimic data coming from actual server over internet.
@@ -688,7 +688,62 @@ Connecting to Redux:
 Conclusions
 In this exercise you have updated your React app to connect to Redux
 
+Exercise (Instructions): Debugging
+Objectives and Outcomes
+In this exercise you will see the tools available for debugging your React Native application. At the end of this exercise, you will be able to:
+1.Set up and use the standalone react-devtools
+2.Debug JS remotely in a Chrome window
 
+1.Debugging
+  a.Install the standalone react-devtools as follows:
+    sudo yarn global add react-devtools@3.2.3
+  Start react-devtools by typing react-devtools at the prompt
+  b.Furthermore, any console logs that you do within your JavaScript code will be printed out on to the terminal window screen.
+
+  Similarly, the Expo App also exposes a lot of debugging tools:
+  Shake your device to open the debugging menu,
+  which allows you to reload the application,
+  it even allows you to disable the live reload of your code,
+  it enables hot reloading and you can see the performance monitor.
+  So, I can click on a Performance monitor and then up here I can see the number of frames per second, the UI, the number of frames per second and then in JavaScript the number of frames per second.
+  So, this may be enable you to watch to see if your views are being rendered fast enough on the screen.
+  Select Debug JS Remotely to run the JS code in a web worker thread in Chrome.
+  You can open the JavaScript console to see the console output.
+  So, this is one way you can watch the console logs directly in your screen.
+  Similarly, you can go to the sources and then in the sources this information will be inside this debuggerworker.js
+  So, the JavaScript code itself is running in a background debugging tool here.
+  So, we can open this information and then be able to view all the details of the code here.
+  The JavaScript part of the code as I said will be running in a thread on your Chrome browser and this would be communicating with the Expo client on the device and then doing all the UI rendering on the Expo client.
+  Now, I will suggest you use this only when you need to do some debugging because when you are running the JavaScript part of your application in a Chrome browser,
+  this is going to communicate through a tunnel, through the network with your Expo client on the device and then render the UI, and this is going to be significantly slower than what you would expect when the application is running completely on the device itself.
+  Running JS remotely will make your app run slow, so turn off remote debugging after you are done.
+  That is the reason when you do the remote debugging, you would see this yellow message pop up at the bottom there.
+  When you open it it says, "Remote debugger is in a background tab which will cause them apps to perform slowly.
+  Fix this by foregrounding the tab and so on." So, you can see this yellow warning box pop up at the bottom there.
+  You can dismiss that and then after you have done with your debugging, then you may wish to stop the "Remote JS Debugging" so that your application runs only on the device.
+  So, these are some of the tools that enable you to do debugging on your application running on the device.
+  If you're not using a real device and instead you are using a simulator, then in the simulator you can type "Command D",
+  if you're using on a Mac, you can type "Control D" if you're using it on Windows to pop up the same menu.
+  If you're using the Genymotion then you can click on the" Menu" and then the same debugging menu will pop up on your screen.
+Conclusions
+In this exercise you learnt to use debugging support for React Native.
+
+
+Exercise (Instructions): Activity Indicator:
+Objectives and Outcomes
+In this exercise you will create a new Loading Component that will make use of the Activity Indicator component to display a loading message. At the end of this exercise you will be able to:
+1.Set up a Loading Component using the Activity Indicator component
+2.Trigger the showing of the loading message when data is being fetched from the server.
+
+1.Loading Component
+  Add a new file named LoadingComponent.js to the components folder and update it.
+  Then, open AboutComponent.js and update it.
+  Then, open HomeComponent.js and update it.
+  Then, open MenuComponent.js and update it.
+  Save all the changes and do a Git commit with the message "Activity Indicator".
+
+Conclusions
+In this exercise you have seen the use of the Activity Indicator to show a loading message in your app
 
 
 
