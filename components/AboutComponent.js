@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { Text, SafeAreaView, VirtualizedList } from "react-native";
 import { Card } from "react-native-elements";
-import { LEADERS } from "../shared/leaders";
+// import { LEADERS } from "../shared/leaders";
 import { FlatList } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
-import { ScrollView, View } from "react-native-gesture-handler";
+// import { ScrollView, View } from "react-native-gesture-handler";
+import { connect } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
 
+const mapStateToProps = (state) => {
+  return {
+    leaders: state.leaders,
+  };
+};
 // Using VirtualizedView function to remove warning that occurs when nesting FlatList inside ScrollView due to performance issues.
 // This warning was not seen with older versions of react-native-elements.
 export function VirtualizedView(props) {
@@ -45,12 +52,12 @@ const History = () => {
 };
 
 class About extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      leaders: LEADERS,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     leaders: LEADERS,
+  //   };
+  // }
   render() {
     const RenderLeaders = ({ item, index }) => {
       // const { navigate } = this.props.navigation;
@@ -58,7 +65,8 @@ class About extends Component {
         <ListItem key={index}>
           <Avatar
             title={item.name}
-            source={require("./images/alberto.png")}
+            // source={require("./images/alberto.png")}
+            source={{ uri: baseUrl + item.image }}
             rounded={true}
           />
           <ListItem.Content>
@@ -78,7 +86,7 @@ class About extends Component {
           <Card.Title>Corporate Leadership</Card.Title>
           <Card.Divider />
           <FlatList
-            data={this.state.leaders}
+            data={this.props.leaders.leaders}
             renderItem={RenderLeaders}
             keyExtractor={(item) => item.id.toString()}
           />
@@ -88,4 +96,4 @@ class About extends Component {
   }
 }
 
-export default About;
+export default connect(mapStateToProps)(About);

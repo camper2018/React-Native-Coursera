@@ -589,8 +589,13 @@ At the end of this exercise, you will be able to:
   At any convenient location on your computer, create a new folder named json-server, and move to this folder.
   Download the db.json file provided above to this folder.
   Move to this folder in your terminal window, and type the following at the command prompt to start the server:
-    json-server --watch db.json -p 3001 -d 2000
+    json-server --watch db.json -p 3001 -H 192.168.86.21
+    or
+    json-server --watch db.json --host 192.168.86.21 -p 3001
+
+    json-server --watch db.json -p 3001 -d 2000 ---> this is not working
     -p flag is for port number and -d 2000 will delay the response from server by 2000s to mimic data coming from actual server over internet.
+    port 3001 is given as we have our app already running on localhost:3000.
   This should start up a server at port number 3001 on your machine. The data from this server can be accessed by typing the following addresses into your browser address bar:
     http://localhost:3001/dishes
     http://localhost:3001/promotions
@@ -605,11 +610,86 @@ At the end of this exercise, you will be able to:
 3.Serving up the Images
   Create a public folder in your json-server folder.
   Download the images.zip file that we provide above, unzip it and move the images folder containing the images to the public folder.
-  Restart the json-server as we did before. Now your server will serve up the images for our React app.
+  Restart the json-server as we did before.
+  Now your server will serve up the images for our React app.
   You can view these images by typing the following into your browser address bar:
     http://localhost:3001/images/<image name>.png
 
 Conclusions
 In this exercise, you learnt how to configure and start a simple server using the json-server node module.
 You also learnt how the server can serve up static web content
+
+Introduction to Redux for React Native:
+
+Objectives and Outcomes
+In this lesson you will get a quick refresher on Redux. A detailed coverage of Redux was provided in the React course of this specialization. You will see the use of an Activity Indicator component that will display a loading message when the data is being fetched from the server. At the end of this lesson you be able to:
+
+1.Set up your application with Redux
+2.Connect your components with Redux to obtain the state information
+3.Set up a Loading Component using the Activity Indicator component
+4.Trigger the showing of the loading message when data is being fetched from the server
+
+Exercise (Instructions): Setting up Redux:
+
+Objectives and Outcomes
+In this exercise you will set up Redux in your React Native application. At the end of this exercise you will be able to:
+
+1.Set up Redux for your app
+2.Create reducers, actions and action creators
+
+1.Setting up Redux
+  First, set up Redux and allied packages by typing the following at the prompt in your project folder:
+    yarn add redux@4.0.0
+    yarn add react-redux@5.0.7
+    yarn add redux-thunk@2.2.0
+    yarn add redux-logger@3.0.6
+
+  Find out the IP address of your computer.
+  On a Mac, go to System Preferences->Network to find the IP address of your network adapter.
+  If you are using a Microsoft Windows based machine, you can use the instructions available at http://windows.microsoft.com/en-us/windows/find-computers-ip-address#1TC=windows-7 to find your machine's IP address.
+
+  Next, create a file named baseUrl.js in the shared folder and add the following to it:
+    export const baseUrl = 'http://<Your Computer\'s IP address>:3001/'
+
+  For example, if your IP address is 192.168.1.121, then the above line should be as follows:
+    export const baseUrl = "http://192.168.1.121:3001/";
+
+  Then, create a folder named redux in your project
+  First, add a new file named ActionTypes.js in the redux folder, and add code to it
+  Then, add a file named configureStore.js in the redux folder and add code to it
+  Next, we add the reducers. Add a file named dishes.js in the redux folder and update it.
+  Then, add a file named comments.js in the redux folder and update it.
+  Next, add a file named leaders.js in the redux folder and update it.
+  Then, add a file named promotions.js in the redux folder and add code to it.
+  Then, add a file named ActionCreators.js in the redux folder and add code to it.
+  Save all the changes and do a Git commit with the message "Setting up Redux".
+
+Conclusions
+In this exercise you have set up Redux support within your React Native app.
+
+Exercise (Instructions): Using Redux in your React Native App
+
+Objectives and Outcomes:
+In this exercise you will set up the components in your React Native app to connect to Redux and obtain the state information from there. At the end of this exercise you will be able to:
+
+1.Set up your React Native app to connect to Redux
+2.Obtain the state information from Redux
+3.Dispatch actions to the Redux store to effect changes to the state
+
+Connecting to Redux:
+  First, open App.js and update it to enable your React Native app to make use of Redux.
+  Then, open AboutComponent.js and update it.
+  Then, open DishdetailComponent.js and update it
+  Then, open HomeComponent.js and update it
+  Then, open MainComponent.js and update it
+  Finally, open MenuComponent.js and update it
+  Save all the changes and do a Git commit with the message "Using Redux"
+
+Conclusions
+In this exercise you have updated your React app to connect to Redux
+
+
+
+
+
 
