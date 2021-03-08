@@ -1,6 +1,7 @@
 import * as ActionTypes from "./ActionTypes";
 import { baseUrl } from "../shared/baseUrl";
-
+// Action Creators / Thunks
+// First create ActionTypes then Reducer then add reducer to the configureSore then create ActionCreators.
 export const fetchComments = () => (dispatch) => {
   return fetch(baseUrl + "comments")
     .then(
@@ -139,4 +140,18 @@ export const leadersFailed = (errmess) => ({
 export const addLeaders = (leaders) => ({
   type: ActionTypes.ADD_LEADERS,
   payload: leaders,
+});
+
+export const postFavorite = (dishId) => (dispatch) => {
+  // After a two second delay, I will dispatch the add favorite action,
+  // so this is sort of simulating access to the server here,
+  // later on when we set up the server to be able to store the favorites,
+  // then we'll be able to replace this with the fetch and post the item to the server.
+  setTimeout(() => {
+    dispatch(addFavorite(dishId));
+  }, 2000);
+};
+export const addFavorite = (dishId) => ({
+  type: ActionTypes.ADD_FAVORITE,
+  payload: dishId,
 });

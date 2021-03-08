@@ -745,6 +745,24 @@ In this exercise you will create a new Loading Component that will make use of t
 Conclusions
 In this exercise you have seen the use of the Activity Indicator to show a loading message in your app
 
+Exercise (Instructions): Redux Adding Favorites
+
+Objectives and Outcomes
+In this exercise you will learn about setting up your Redux store to store the user's favorites and update them. At the end of this exercise you will be able to:
+1.Set up a new property in the Redux store to track the favorites
+2.Set up actions to add new favorites to the store
+
+1.Adding Favorites
+  First, set up a new actions by adding the action types to ActionTypes.js.
+2.Then, add a new reducer in a file named favorites.js in the redux folder.
+3.Then, update configureStore.js.
+4.Then update ActionCreators.js with new actions creators.
+5.Then, update DishdetailComponent.js to make it container (smart) component that will listen the changes in redux store state for favorites.
+6.Save all the changes and do a Git commit with the message "Redux Adding Favorites"
+
+Conclusions
+In this exercise you learnt to set up a new property in the Redux store and set up actions to update it.
+
 
 
 

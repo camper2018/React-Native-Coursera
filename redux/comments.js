@@ -1,4 +1,5 @@
 import * as ActionTypes from "./ActionTypes";
+// REDUCER
 export const comments = (
   state = {
     isLoading: true,
