@@ -20,6 +20,7 @@ import {
 } from "@react-navigation/drawer";
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
+import Reservation from "./ReservationComponent";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import {
@@ -183,6 +184,36 @@ function AboutStackScreen({ navigation }) {
     </AboutNavigator.Navigator>
   );
 }
+const ReservationNavigator = createStackNavigator();
+function ReservationStackScreen({ navigation }) {
+  return (
+    <ReservationNavigator.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#512DA8" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { color: "#fff" },
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={24}
+            color="white"
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 10 }}
+          />
+        ),
+      }}
+    >
+      <ReservationNavigator.Screen
+        name="Reserve Table"
+        component={Reservation}
+        options={{
+          title: "Reserve Table",
+          drawerLabel: "Reserve Table",
+        }}
+      />
+    </ReservationNavigator.Navigator>
+  );
+}
 // Using Drawer-Based Navigation
 
 const MainNavigator = createDrawerNavigator();
@@ -233,6 +264,20 @@ function MainDrawerScreen() {
           drawerIcon: ({ tintColor, focused }) => (
             <Icon
               name="info-circle"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+          ),
+        }}
+      />
+      <MainNavigator.Screen
+        name="Reserve Table"
+        component={ReservationStackScreen}
+        options={{
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name="cutlery"
               type="font-awesome"
               size={24}
               color={tintColor}

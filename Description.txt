@@ -763,6 +763,32 @@ In this exercise you will learn about setting up your Redux store to store the u
 Conclusions
 In this exercise you learnt to set up a new property in the Redux store and set up actions to update it.
 
+Forms and Modals: Objectives and Outcomes
+In this lesson we will examine how to create forms and modals in a React Native app. At the end of this exercise you will be able to:
+1.Set up forms in a React Native app
+2.Create modals, show and hide them
 
 
+Forms:
+Forms, as we realize, are the mainstay for data entry in web applications.
+In mobile devices, we synthesize forms using the UI widget in order to allow the user to input data.
+So in this exercise, we'll construct a form, and enable the user to input data. We will also see the use of a date picker that allows the user to pick a date and time to input to the application.
+
+Exercise (Instructions): Forms
+
+Objectives and Outcomes
+In this exercise we will add a form to our app, and examine how to handle form submission. At the end of this exercise you will be able to:
+
+1.Create forms in your React Native app
+2.Handle form submissions
+
+1.Adding a Form
+  First, we will add a Date Picker module to our app as follows:
+  yarn add react-native-datepicker@1.7.2
+2.We will then add a new file named ReservationComponent.js and update its contents
+3.Then, we update MainComponent.js to intergrate the new component into our app
+4.Save all the changes and do a Git commit with the message "Forms".
+
+Conclusions
+In this exercise we have learnt how to add forms to our app.
 
