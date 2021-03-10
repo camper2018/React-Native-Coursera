@@ -792,3 +792,20 @@ In this exercise we will add a form to our app, and examine how to handle form s
 Conclusions
 In this exercise we have learnt how to add forms to our app.
 
+Exercise (Instructions): Modals
+
+Objectives and Outcomes
+In this exercise you will learn how to add a modal to our app. You will learn how to show and hide the modal. At the end of this exercise you will be able to:
+
+1.Add modals to your app
+2.Show and hide the modal
+
+1.Adding a Modal
+  Open ReservationComponent.js and update it.
+  Save the changes and do a Git commit with the message "Modal".
+
+Conclusions
+In this exercise you learnt to add a modal to the app
+
+
+
