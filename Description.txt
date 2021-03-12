@@ -859,8 +859,26 @@ Navigate to the details of the dish when the users taps a favorite
 1.Favorites
   Add a new file named FavoriteComponent.js in the components folder and update its contents
   Next, update MainComponent.js to integrate the Favorites component
-  Save all the changes and do a Git commit with the message "Favorites".
+  Save all the changes and do a Git commit with the message "Add Favorites Component".
 
 Conclusions
 In this exercise you added a Favorites component and integrated it into our app
 
+Exercise (Instructions): Swipeout and Deleting Favorites:
+Objectives and Outcomes
+In this exercise you will use a swipe gesture to reveal option buttons under a list item. This will be used to support deleting a favorite. At the end of this exercise you will be able to:
+
+1.Use swipe gesture to reveal option buttons
+2.Click on a delete option button to delete the favorite
+
+1.Swipe Gesture and Option Buttons
+  First install the react-native-swipeout module to support swipe gesture:
+    yarn add react-native-swipeout@2.3.3
+  Then, add a new action to ActionTypes.js
+  Then add a new action creator to ActionCreators.js
+  Then, update the favorites.js reducer
+  Then, finally update FavoriteComponent.js
+  Save all the changes and do a Git commit with the message "Delete Favorites".
+
+Conclusions
+In this exercise you have learnt to use swipeout to reveal option buttons and support deleting favorite

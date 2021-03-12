@@ -85,7 +85,7 @@ function RenderComments(props) {
         <Text style={{ fontSize: 14, paddingBottom: 7 }}>{item.comment}</Text>
         {/* <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text> */}
         <Rating
-          startingValue={item.rating}
+          startingValue={Number(item.rating)}
           readonly={true}
           imageSize={10}
           style={{ alignItems: "left", paddingBottom: 7 }}

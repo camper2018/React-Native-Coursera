@@ -4,12 +4,17 @@ import { ListItem, Avatar } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
+import Swipeout from "react-native-swipeout";
+import { deleteFavorite } from "../redux/ActionCreators";
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
     favorites: state.favorites,
   };
 };
+const mapDispatchToProps = (dispatch) => ({
+  deleteFavorite: (dishId) => dispatch(deleteFavorite(dishId)),
+});
 class Favorites extends Component {
   // static navigationOptions = {
   //   title: "My Favorites",
@@ -17,29 +22,35 @@ class Favorites extends Component {
   render() {
     const renderMenuItem = ({ item, index }) => {
       const { navigate } = this.props.navigation;
+      const rightButtons = [
+        {
+          text: "Delete",
+          type: "delete",
+          onPress: () => this.props.deleteFavorite(item.id),
+        },
+      ];
       return (
-        <ListItem
-          key={index}
-          bottomDivider
-          onPress={() => navigate("Dishdetail", { dishId: item.id })}
-        >
-          <Avatar
-            title={item.name}
-            source={{ uri: baseUrl + item.image }}
-            rounded={true}
-          />
-          <ListItem.Content>
-            <ListItem.Title style={{ fontWeight: "700", paddingBottom: 10 }}>
-              {/* <ListItem.Title
-              style={{ flexDirection: "row", paddingLeft: 10, paddingTop: 5 }}
-            > */}
-              {item.name}
-            </ListItem.Title>
-            <ListItem.Subtitle style={{ fontFamily: "Courier New" }}>
-              {item.description}
-            </ListItem.Subtitle>
-          </ListItem.Content>
-        </ListItem>
+        <Swipeout right={rightButtons} autoClose={true}>
+          <ListItem
+            key={index}
+            bottomDivider
+            onPress={() => navigate("Dishdetail", { dishId: item.id })}
+          >
+            <Avatar
+              title={item.name}
+              source={{ uri: baseUrl + item.image }}
+              rounded={true}
+            />
+            <ListItem.Content>
+              <ListItem.Title style={{ fontWeight: "700", paddingBottom: 10 }}>
+                {item.name}
+              </ListItem.Title>
+              <ListItem.Subtitle style={{ fontFamily: "Courier New" }}>
+                {item.description}
+              </ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        </Swipeout>
       );
     };
     if (this.props.dishes.isLoading) {
@@ -64,4 +75,4 @@ class Favorites extends Component {
     }
   }
 }
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
