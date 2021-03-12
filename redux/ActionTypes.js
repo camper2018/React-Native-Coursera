@@ -11,7 +11,7 @@ export const ADD_LEADERS = "ADD_LEADERS";
 export const LEADERS_FAILED = "LEADERS_FAILED";
 export const POST_FAVORITE = "POST_FAVORITE";
 export const ADD_FAVORITE = "ADD_FAVORITE";
-
+export const ADD_COMMENT = "ADD_COMMENT";
 //I separate the POST_FAVORITE from the other action called Add_Favorite.
 // The reason is that the Post_Favorite should be an action which would actually push the favorite to the server and would update the favorites on the server side,
 // and then when the server gets updated the server needs to reply back to you saying the favorite is properly updated.

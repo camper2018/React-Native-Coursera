@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 };
 // Using VirtualizedView function to remove warning that occurs when nesting FlatList inside ScrollView due to performance issues.
 // This warning was not seen with older versions of react-native-elements.
-export function VirtualizedView(props) {
+export const VirtualizedView = (props) => {
   return (
     <FlatList
       data={[]}
@@ -26,7 +26,7 @@ export function VirtualizedView(props) {
       )}
     />
   );
-}
+};
 const History = () => {
   return (
     <Card>

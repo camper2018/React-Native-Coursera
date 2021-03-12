@@ -12,7 +12,7 @@ export const comments = (
     case ActionTypes.ADD_COMMENTS:
       return {
         ...state,
-
+        isLoading: false,
         errMess: null,
         comments: action.payload,
       };
@@ -20,9 +20,20 @@ export const comments = (
     case ActionTypes.COMMENTS_FAILED:
       return {
         ...state,
+        isLoading: false,
         errMess: action.payload,
         comments: [],
       };
+    case ActionTypes.ADD_COMMENT:
+      let comment = action.payload;
+      let id = state.comments.length - 1;
+      comment["id"] = id;
+
+      return {
+        ...state,
+        comments: state.comments.concat(comment),
+      };
+
     default:
       return state;
   }

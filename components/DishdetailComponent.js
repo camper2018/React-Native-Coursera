@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, FlatList } from "react-native";
-import { Card, Icon } from "react-native-elements";
-
-import { VirtualizedView } from "./AboutComponent";
+import { View, Text, ScrollView, FlatList, Modal, Button } from "react-native";
+import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postFavorite } from "../redux/ActionCreators";
+import { postComment } from "../redux/ActionCreators";
+import { LogBox } from "react-native";
+
+// To ignore VirtulizedLists warning
+LogBox.ignoreLogs([
+  "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation",
+]);
+
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
@@ -13,8 +19,12 @@ const mapStateToProps = (state) => {
     favorites: state.favorites,
   };
 };
+
 const mapDispatchToProps = (dispatch) => ({
   postFavorite: (dishId) => dispatch(postFavorite(dishId)),
+  postComment: (dishId, rating, author, comment) => {
+    return dispatch(postComment(dishId, rating, author, comment));
+  },
 });
 function RenderDish(props) {
   const dish = props.dish;
@@ -33,16 +43,32 @@ function RenderDish(props) {
           </Card.FeaturedTitle>
         </Card.Image>
         <Text style={{ margin: 10 }}>{dish.description}</Text>
-        <Icon
-          raised
-          reverse
-          name={props.favorite ? "heart" : "heart-o"}
-          type="font-awesome"
-          color="#f50"
-          onPress={() =>
-            props.favorite ? console.log("Already favorite") : props.onPress()
-          }
-        />
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          <Icon
+            raised
+            reverse
+            name={props.favorite ? "heart" : "heart-o"}
+            type="font-awesome"
+            color="#f50"
+            onPress={() =>
+              props.favorite ? console.log("Already favorite") : props.onPress()
+            }
+          />
+          <Icon
+            raised
+            reverse
+            name="pencil"
+            type="font-awesome"
+            color="#512DA8"
+            onPress={() => props.toggleModal()}
+          />
+        </View>
       </Card>
     );
   } else {
@@ -77,37 +103,111 @@ function RenderComments(props) {
   );
 }
 class Dishdetail extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     favorites: [],
-  //   };
-  // }
-  markFavorite(dishId) {
-    // this.setState({ favorites: this.state.favorites.concat(dishId) });
-    this.props.postFavorite(dishId);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      rating: 3,
+      author: "",
+      comment: "",
+    };
+    this.toggleModal = this.toggleModal.bind(this);
+    this.handleComment = this.handleComment.bind(this);
   }
 
+  markFavorite(dishId) {
+    this.props.postFavorite(dishId);
+  }
+  toggleModal() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+
+  handleComment = () => {
+    // console.log(JSON.stringify(this.state));
+    const dishId = this.props.route.params.dishId;
+    const { rating, comment, author } = this.state;
+    this.props.postComment(dishId, rating, author, comment);
+    this.toggleModal();
+    this.resetForm();
+  };
+  resetForm() {
+    this.setState({
+      showModal: false,
+      rating: 3,
+      author: "",
+      comment: "",
+    });
+  }
   render() {
     // navigation and route props are passed to all the screen components by Stack Navigator
     const dishId = this.props.route.params.dishId;
     // the plus in [+dishId] will convert dishId string into a number
     return (
-      // <ScrollView>
-      <VirtualizedView>
+      <ScrollView>
         <RenderDish
           dish={this.props.dishes.dishes[+dishId]}
           favorite={this.props.favorites.some((el) => el === dishId)}
           onPress={() => this.markFavorite(dishId)}
+          toggleModal={() => this.toggleModal()}
         />
         <RenderComments
           comments={this.props.comments.comments.filter(
             (comment) => comment.dishId === dishId
           )}
         />
-        {/* </ScrollView> */}
-      </VirtualizedView>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.showModal}
+          onRequestClose={() => {
+            this.toggleModal();
+          }}
+        >
+          <View style={{ marginTop: 50 }}>
+            <Rating
+              showRating
+              minValue={1}
+              fractions={0}
+              startingValue={3}
+              name="rating"
+              onFinishRating={(rating) => this.setState({ rating: rating })}
+            />
+          </View>
+          <View>
+            <Input
+              placeholder="Author"
+              leftIcon={{ type: "font-awesome", name: "user-o" }}
+              name="author"
+              ref={(component) => (this.author = component)}
+              onChangeText={(author) => this.setState({ author: author })}
+            />
+            <Input
+              placeholder="Comment"
+              leftIcon={{ type: "font-awesome", name: "comment-o" }}
+              name="comment"
+              onChangeText={(comment) => {
+                this.setState({ comment });
+              }}
+            />
+          </View>
+          <View style={{ backgroundColor: "#512DA8", margin: 30 }}>
+            <Button color="white" title="SUBMIT" onPress={this.handleComment} />
+          </View>
+          <View style={{ backgroundColor: "grey", margin: 30 }}>
+            <Button
+              onPress={() => {
+                this.resetForm();
+                this.toggleModal();
+              }}
+              color="white"
+              title="CANCEL"
+            />
+          </View>
+        </Modal>
+      </ScrollView>
     );
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Dishdetail);

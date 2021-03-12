@@ -52,13 +52,8 @@ class Reservation extends Component {
     });
   }
   handleReservation() {
-    console.log(JSON.stringify(this.state));
+    // console.log(JSON.stringify(this.state));
     this.toggleModal();
-    // this.setState({
-    //   guests: 1,
-    //   smoking: false,
-    //   date: "",
-    // });
   }
   resetForm() {
     this.setState({

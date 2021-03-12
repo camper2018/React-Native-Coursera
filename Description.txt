@@ -807,5 +807,37 @@ In this exercise you will learn how to add a modal to our app. You will learn ho
 Conclusions
 In this exercise you learnt to add a modal to the app
 
+Assignment 2:
+In this assignment you will explore React Native Modal and forms, and set up a form to submit a comment about a dish.
+You will also set up the appropriate actions, action creators and update the comments reducer for adding the comment to the list of comments for the dish.
 
+Assignment Overview
+In this assignment, you will use a modal containing a form that enables you to add your comments about the dish.
+When the comment is submitted, then an action is dispatched to add the comment to the list of comments.
+
+Assignment Requirements
+This assignment consists of two tasks:
+
+Task 1
+
+Implement a modal containing the "form" that enables the user to add comments on the dish in the Dishdetail Component.
+The "form" should contain three fields: Rating, Author and Comment.
+Use a Rating React Native Elements (RNE) component for the Rating, and RNE Input component for the Author and Comment fields.
+The Rating should be configured with a range of 1 to 5 with a step size of 1.
+The form component values should be stored in the state of the Dishdetail Component.
+Upon submitting the valid comment, the comment should join the other comments for the dish in the Dishdetail component.
+This would be implemented through the steps in Task 2 where you set up the Redux store to allow you to add the comment.
+The dispatch of the action should be done in the handleComment() function that handles the form submission in code.
+Add an icon to the Card displaying the dish, which when clicked, will show the modal.
+The icon should use the Font Awesome pencil icon.
+
+Task 2
+Add an Action named ADD_COMMENT to the ActionTypes.js.
+Add two action creators named postComment() and addComment().
+The postComment() creator will receive the dishId, rating, author and comment as the four parameters.
+The date for the comment should be set automatically upon submission of the form.
+You can use the JavaScript date (see here for an example) method to set the date to ISO string.
+It will delay for 2 seconds and then dispatch addComment().
+Update the comments reducer function to handle the new ADD_COMMENT action and add the comment to the list of comments.
+The handling of the action should also ensure that appropriate ID will be added to the comment.
 
