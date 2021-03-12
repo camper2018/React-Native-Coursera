@@ -21,6 +21,7 @@ import {
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import Reservation from "./ReservationComponent";
+import Favorites from "./FavoriteComponent";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import {
@@ -214,6 +215,37 @@ function ReservationStackScreen({ navigation }) {
     </ReservationNavigator.Navigator>
   );
 }
+
+const FavoritesNavigator = createStackNavigator();
+function FavoritesStackScreen({ navigation }) {
+  return (
+    <FavoritesNavigator.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#512DA8" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { color: "#fff" },
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={24}
+            color="white"
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 10 }}
+          />
+        ),
+      }}
+    >
+      <FavoritesNavigator.Screen
+        name="My Favorites"
+        component={Favorites}
+        options={{
+          title: "My Favorites",
+          drawerLabel: "My Favorites",
+        }}
+      />
+    </FavoritesNavigator.Navigator>
+  );
+}
 // Using Drawer-Based Navigation
 
 const MainNavigator = createDrawerNavigator();
@@ -264,6 +296,20 @@ function MainDrawerScreen() {
           drawerIcon: ({ tintColor, focused }) => (
             <Icon
               name="info-circle"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+          ),
+        }}
+      />
+      <MainNavigator.Screen
+        name="My Favorites"
+        component={FavoritesStackScreen}
+        options={{
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name="heart"
               type="font-awesome"
               size={24}
               color={tintColor}

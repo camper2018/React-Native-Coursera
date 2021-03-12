@@ -841,3 +841,26 @@ It will delay for 2 seconds and then dispatch addComment().
 Update the comments reducer function to handle the new ADD_COMMENT action and add the comment to the list of comments.
 The handling of the action should also ensure that appropriate ID will be added to the comment.
 
+Swipe Option Buttons and Alerts:
+Objectives and Outcomes
+In this lesson we will add a new Favorites component and add a way of revealing option buttons for a list item. We will also explore the use of Alerts. At the end of this lesson you will be able to:
+1.Add option buttons to list items that will be revealed on swiping
+2.Add alerts to your app
+
+Exercise (Instructions): Favorites
+Objectives and Outcomes
+In an earlier exercise we have already added a feature to add dishes as favorites.
+In this exercise we will add a new component that will display a list of favorites.
+At the end of this exercise you will be able to:
+
+Show the list of favorites for the user
+Navigate to the details of the dish when the users taps a favorite
+
+1.Favorites
+  Add a new file named FavoriteComponent.js in the components folder and update its contents
+  Next, update MainComponent.js to integrate the Favorites component
+  Save all the changes and do a Git commit with the message "Favorites".
+
+Conclusions
+In this exercise you added a Favorites component and integrated it into our app
+
