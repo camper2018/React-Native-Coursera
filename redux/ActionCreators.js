@@ -158,10 +158,7 @@ export const addFavorite = (dishId) => ({
 
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
   const newComment = { dishId, rating, author, comment };
-  let date = new Date();
-  date = date.toISOString();
-  newComment.date = date;
-
+  newComment.date = new Date().toISOString();
   setTimeout(() => {
     dispatch(addComment(newComment));
   }, 2000);

@@ -123,9 +123,9 @@ class Dishdetail extends Component {
     this.setState({ showModal: !this.state.showModal });
   }
 
-  handleComment = () => {
+  handleComment = (dishId) => {
     // console.log(JSON.stringify(this.state));
-    const dishId = this.props.route.params.dishId;
+    // const dishId = this.props.route.params.dishId;
     const { rating, comment, author } = this.state;
     this.props.postComment(dishId, rating, author, comment);
     this.toggleModal();
@@ -170,35 +170,38 @@ class Dishdetail extends Component {
               minValue={1}
               fractions={0}
               startingValue={3}
-              name="rating"
+              onDismiss={() => {
+                this.toggleModal();
+              }}
               onFinishRating={(rating) => this.setState({ rating: rating })}
             />
           </View>
           <View>
             <Input
               placeholder="Author"
-              leftIcon={{ type: "font-awesome", name: "user-o" }}
-              name="author"
-              ref={(component) => (this.author = component)}
+              leftIcon={{ type: "font-awesome", name: "user-o", size: 24 }}
               onChangeText={(author) => this.setState({ author: author })}
             />
             <Input
               placeholder="Comment"
-              leftIcon={{ type: "font-awesome", name: "comment-o" }}
-              name="comment"
+              leftIcon={{ type: "font-awesome", name: "comment-o", size: 24 }}
               onChangeText={(comment) => {
                 this.setState({ comment });
               }}
             />
           </View>
           <View style={{ backgroundColor: "#512DA8", margin: 30 }}>
-            <Button color="white" title="SUBMIT" onPress={this.handleComment} />
+            <Button
+              color="white"
+              title="SUBMIT"
+              onPress={() => this.handleComment(dishId)}
+            />
           </View>
           <View style={{ backgroundColor: "grey", margin: 30 }}>
             <Button
               onPress={() => {
-                this.resetForm();
                 this.toggleModal();
+                this.resetForm();
               }}
               color="white"
               title="CANCEL"
