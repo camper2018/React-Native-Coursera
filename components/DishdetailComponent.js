@@ -6,10 +6,11 @@ import { baseUrl } from "../shared/baseUrl";
 import { postFavorite } from "../redux/ActionCreators";
 import { postComment } from "../redux/ActionCreators";
 import { LogBox } from "react-native";
-
+import * as Aminatable from "react-native-animatable";
 // To ignore VirtulizedLists warning
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation",
+  "componentWillReceiveProps has been renamed, and is not recommended for use.",
 ]);
 
 const mapStateToProps = (state) => {
@@ -30,46 +31,50 @@ function RenderDish(props) {
   const dish = props.dish;
   if (dish != null) {
     return (
-      <Card>
-        <Card.Image source={{ uri: baseUrl + dish.image }}>
-          <Card.FeaturedTitle
+      <Aminatable.View animation="fadeInDown" duration={2000} delay={1000}>
+        <Card>
+          <Card.Image source={{ uri: baseUrl + dish.image }}>
+            <Card.FeaturedTitle
+              style={{
+                textAlign: "center",
+                textAlignVertical: "center",
+                lineHeight: 150,
+              }}
+            >
+              {dish.name}
+            </Card.FeaturedTitle>
+          </Card.Image>
+          <Text style={{ margin: 10 }}>{dish.description}</Text>
+          <View
             style={{
-              textAlign: "center",
-              textAlignVertical: "center",
-              lineHeight: 150,
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "center",
             }}
           >
-            {dish.name}
-          </Card.FeaturedTitle>
-        </Card.Image>
-        <Text style={{ margin: 10 }}>{dish.description}</Text>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-        >
-          <Icon
-            raised
-            reverse
-            name={props.favorite ? "heart" : "heart-o"}
-            type="font-awesome"
-            color="#f50"
-            onPress={() =>
-              props.favorite ? console.log("Already favorite") : props.onPress()
-            }
-          />
-          <Icon
-            raised
-            reverse
-            name="pencil"
-            type="font-awesome"
-            color="#512DA8"
-            onPress={props.toggleModal}
-          />
-        </View>
-      </Card>
+            <Icon
+              raised
+              reverse
+              name={props.favorite ? "heart" : "heart-o"}
+              type="font-awesome"
+              color="#f50"
+              onPress={() =>
+                props.favorite
+                  ? console.log("Already favorite")
+                  : props.onPress()
+              }
+            />
+            <Icon
+              raised
+              reverse
+              name="pencil"
+              type="font-awesome"
+              color="#512DA8"
+              onPress={props.toggleModal}
+            />
+          </View>
+        </Card>
+      </Aminatable.View>
     );
   } else {
     return <View></View>;
@@ -99,14 +104,16 @@ function RenderComments(props) {
   };
 
   return (
-    <Card>
-      <Card.Title>Comments</Card.Title>
-      <FlatList
-        data={comments}
-        renderItem={renderCommentItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </Card>
+    <Aminatable.View animation="fadeInUp" duration={2000} delay={1000}>
+      <Card>
+        <Card.Title>Comments</Card.Title>
+        <FlatList
+          data={comments}
+          renderItem={renderCommentItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </Card>
+    </Aminatable.View>
   );
 }
 class Dishdetail extends Component {

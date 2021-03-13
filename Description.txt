@@ -924,3 +924,22 @@ We will see in this exercise how we can add animations by transforming certain p
 Conclusions
 In this exercise you learnt to add animations using the Animated API.
 
+Exercise (Instructions): Animatable
+
+Objectives and Outcomes
+In this exercise you will learn to use an animation library named react-native-animatable that gives you pre-packaged animations that can easily be applied to elements in your app. At the end of this exercise you will be able to:
+1.Set up your app to use react-native-animatable
+2.Apply pre-packaged animations to some elements
+
+1.Using react-native-animatable
+  First install react-native-animatable in your app by typing the following at the prompt:
+    yarn add react-native-animatable@1.2.4
+  Then, open AboutComponent.js and update it
+  Next, open ContactComponent.js and update it
+  Then, open DIshdetailComponent.js and update it
+  Next, open FavoritesComponent.js and update it
+  And Finally open MenuComponent.js and update it
+  Save all the changes and do a Git commit with the message "Animatable".
+
+Conclusions
+In this exercise you have learnt to use the react-native-animatable to add animations.

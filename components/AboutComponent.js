@@ -6,7 +6,7 @@ import { ListItem, Avatar } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
-
+import * as Aminatable from "react-native-animatable";
 const mapStateToProps = (state) => {
   return {
     leaders: state.leaders,
@@ -72,36 +72,42 @@ class About extends Component {
     if (this.props.leaders.isLoading) {
       return (
         <VirtualizedView>
-          <History />
-          <Card>
-            <Card.Title>Corporate Leadership</Card.Title>
-            <Loading />
-          </Card>
+          <Aminatable.View animation="fadeInDown" duration={2000} delay={1000}>
+            <History />
+            <Card>
+              <Card.Title>Corporate Leadership</Card.Title>
+              <Loading />
+            </Card>
+          </Aminatable.View>
         </VirtualizedView>
       );
     } else if (this.props.leaders.errMess) {
       return (
         <VirtualizedView>
-          <History />
-          <Card>
-            <Card.Title>Corporate Leadership</Card.Title>
-            <Text>{this.props.leaders.errMess}</Text>
-          </Card>
+          <Aminatable.View animation="fadeInDown" duration={2000} delay={1000}>
+            <History />
+            <Card>
+              <Card.Title>Corporate Leadership</Card.Title>
+              <Text>{this.props.leaders.errMess}</Text>
+            </Card>
+          </Aminatable.View>
         </VirtualizedView>
       );
     } else {
       return (
         <VirtualizedView>
-          <History />
-          <Card>
-            <Card.Title>Corporate Leadership</Card.Title>
-            <Card.Divider />
-            <FlatList
-              data={this.props.leaders.leaders}
-              renderItem={RenderLeaders}
-              keyExtractor={(item) => item.id.toString()}
-            />
-          </Card>
+          <Aminatable.View animation="fadeInDown" duration={2000} delay={1000}>
+            <History />
+            <Card>
+              <Card.Title>Corporate Leadership</Card.Title>
+              <Card.Divider />
+              <FlatList
+                data={this.props.leaders.leaders}
+                renderItem={RenderLeaders}
+                keyExtractor={(item) => item.id.toString()}
+              />
+            </Card>
+          </Aminatable.View>
         </VirtualizedView>
       );
     }

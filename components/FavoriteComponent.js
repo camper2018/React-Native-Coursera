@@ -6,6 +6,7 @@ import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
 import Swipeout from "react-native-swipeout";
 import { deleteFavorite } from "../redux/ActionCreators";
+import * as Aminatable from "react-native-animatable";
 
 const mapStateToProps = (state) => {
   return {
@@ -50,25 +51,29 @@ class Favorites extends Component {
       ];
       return (
         <Swipeout right={rightButtons} autoClose={true}>
-          <ListItem
-            key={index}
-            bottomDivider
-            onPress={() => navigate("Dishdetail", { dishId: item.id })}
-          >
-            <Avatar
-              title={item.name}
-              source={{ uri: baseUrl + item.image }}
-              rounded={true}
-            />
-            <ListItem.Content>
-              <ListItem.Title style={{ fontWeight: "700", paddingBottom: 10 }}>
-                {item.name}
-              </ListItem.Title>
-              <ListItem.Subtitle style={{ fontFamily: "Courier New" }}>
-                {item.description}
-              </ListItem.Subtitle>
-            </ListItem.Content>
-          </ListItem>
+          <Aminatable.View animation="fadeInRightBig" duration={2000}>
+            <ListItem
+              key={index}
+              bottomDivider
+              onPress={() => navigate("Dishdetail", { dishId: item.id })}
+            >
+              <Avatar
+                title={item.name}
+                source={{ uri: baseUrl + item.image }}
+                rounded={true}
+              />
+              <ListItem.Content>
+                <ListItem.Title
+                  style={{ fontWeight: "700", paddingBottom: 10 }}
+                >
+                  {item.name}
+                </ListItem.Title>
+                <ListItem.Subtitle style={{ fontFamily: "Courier New" }}>
+                  {item.description}
+                </ListItem.Subtitle>
+              </ListItem.Content>
+            </ListItem>
+          </Aminatable.View>
         </Swipeout>
       );
     };
