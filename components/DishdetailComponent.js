@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, FlatList, Modal, Button } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+  Modal,
+  Button,
+  Alert,
+  PanResponder,
+} from "react-native";
 import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
@@ -29,9 +38,75 @@ const mapDispatchToProps = (dispatch) => ({
 });
 function RenderDish(props) {
   const dish = props.dish;
+
+  const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
+    // MoveX is the latest screen coordinates of the recently moved touch gesture
+    // and similarly moveY is the screen coordinates of the recently moved touch,
+    // the X and Y coordinates of that point.
+    // Now, the dx is the accumulated distance of the gesture since the touch started along the X direction.
+    // So, if you touch the screen at one point and then you drag your screen across to create the gesture and then lift the screen.
+    // The distance that your touch gesture drags along the screen is given by dx and dy. Dx along the X axis and dy along the Y axis.
+    // Now, in this case, I am going to recognize only the right to left gesture on the screen.
+    // If the dx value is less than minus 200 meaning that it has accumulated a distance of 200 but in the right to left direction, so in the negative direction.
+    // So, the way the distances are measured is the coordinates always are measured with 00 at the top-left corner.
+    // So a distance traveled in the negative direction will have a negative value here.
+    // So if dx is less than 200, then I will return a true to indicate that indeed this was a right to left pan gesture that the user did.
+    // Now, along the Y direction, we don't really care. We are only interested if the user has done sufficient distance of the gesture on the screen along the X direction.
+    // Otherwise, you will return a false
+    if (dx < -200) {
+      return true;
+    } else {
+      false;
+    }
+  };
+  //PanResponder.create() accepts callbacks
+  const panResponder = PanResponder.create({
+    // onStartShouldSetPanResponder starts when user gesture begins on the screen and gives access to event and gesture state.
+
+    onStartShouldSetPanResponder: (e, gestureState) => {
+      return true;
+    },
+    // So this one will be invoked when the user lifts their finger off the screen after performing the gesture.
+    // gestureState is passed to recognizeDrag() which provides us certain properties like moveX, moveY etc
+    // and we can use them to recognize the gesture done by user and how we want to respond to it.
+    onPanResponderEnd: (e, gestureState) => {
+      // This will return a true if this is a swipe left gesture that the user has done.
+      // If that is the case then we're going to interpret that gesture to mean that the user wants to add this particular dish to his or her list of favorite dishes.
+      // So, that's where we will generate an alert
+      if (recognizeDrag(gestureState)) {
+        Alert.alert(
+          "Add to Favorites?",
+          "Are you sure you wish to add " + dish.name + " to your favorites?",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel pressed"),
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () =>
+                props.favorite
+                  ? console.log("Already favorite")
+                  : props.onPress(),
+            },
+          ],
+          { cancelable: false }
+        );
+        return true;
+      }
+    },
+  });
   if (dish != null) {
     return (
-      <Aminatable.View animation="fadeInDown" duration={2000} delay={1000}>
+      <Aminatable.View
+        animation="fadeInDown"
+        duration={2000}
+        delay={1000}
+        {...panResponder.panHandlers}
+        // All the  pan handler functions that we have implemented or callback functions that we have implemented will be added in to this view.
+        // Now, on this view, any gesture that user does, the panhandlers are supposed to handle that gesture.
+      >
         <Card>
           <Card.Image source={{ uri: baseUrl + dish.image }}>
             <Card.FeaturedTitle

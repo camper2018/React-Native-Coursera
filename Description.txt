@@ -943,3 +943,49 @@ In this exercise you will learn to use an animation library named react-native-a
 
 Conclusions
 In this exercise you have learnt to use the react-native-animatable to add animations.
+
+Gestures: Objectives and Outcomes
+
+The user performing gestures is a very natural way for the user to interact with your mobile application on a mobile device.
+So, typically, the user may swipe on the screen, may do multi touch on the screen, may do a rotating kind of operational screen and so on.
+So all these result in gestures being done on the screen to which your app may wish to respond to handle these gestures by the user.
+Now in terms of implementing gesture handling the best practices suggest that you give some visual feedback to the user to show what's handling the touch.
+So for example if the user is pressing on a button, maybe you will slightly enlarge the button and darken the background of a button or maybe do a little effect as done in Android with the material design approach.
+Also, you should be able to support cancelling of a gesture if required.
+In this lesson you will explore the support for gestures using PanResponder in a React Native app.
+The PanResponder is also part of React Native and the PanResponder exports in API which can be easily used for this purpose.
+Now, it provides a predictable wrapper with a set of response handlers, which are implemented. And this enables you to take advantage just of the responder system underneath.
+It provides native event and gestureState as parameters to the various handlers that you implement.
+
+At the end of this lesson you will be able to:
+
+Make use of PanResponder to respond to various user gestures on the screen
+
+Exercise (Instructions): Gestures Part 1
+
+Objectives and Outcomes
+In this exercise you will learn to use the PanResponder to add gesture support in your app.
+At the end of this exercise you will be able to:
+1.Use the methods supported by PanResponder to add gesture support in your app
+
+1. Using PanResponder
+  Open DishdetailComponent.js and update it
+  Save all the changes and do a Git commit with the message "Gestures Part 1".
+
+Conclusions
+In this exercise you learnt to use the PanResponder to add gesture support to your app.
+
+Exercise (Instructions): Gestures Part 2
+Objectives and Outcomes
+In this exercise we will continue with the use of PanResponder to respond to gestures.
+In addition we will add in animation as a way of giving visual feedback to the user.
+At the end of this exercise you will be able to:
+
+Use animations as a way of giving visual feedback to users in response to gestures
+
+1.Animations and Gestures
+  Open DishdetailComponent.js and update it
+  Save all the changes and do a Git commit with the message "Gestures Part 2".
+
+Conclusions
+In this exercise you saw the use of animations as a way of providing visual feedback to users in response to gestures.
