@@ -865,6 +865,11 @@ Conclusions
 In this exercise you added a Favorites component and integrated it into our app
 
 Exercise (Instructions): Swipeout and Deleting Favorites:
+
+DEPRECATED : Try using react-native-gesture-handler
+expo install react-native-gesture-handler
+https://blog.jscrambler.com/creating-swipeable-gestures-with-react-native-gesture-handler/
+
 Objectives and Outcomes
 In this exercise you will use a swipe gesture to reveal option buttons under a list item. This will be used to support deleting a favorite. At the end of this exercise you will be able to:
 
@@ -897,3 +902,25 @@ In this exercise you will learn to use the Alert dialog to show alerts to the us
 
 Conclusions
 In this exercise you learnt to use an Alert dialog.
+
+Animations: Objectives and Outcomes
+In this lesson you will learn more about animations and their use in a React Native application. At the end of this exercise you will be able to:
+
+1.Add animations in your applications using Animate
+2.Add animations to your applications using Animatable
+
+Exercise (Instructions): Animations
+
+Objectives and Outcomes
+In this exercise you will learn to add animations to your app using the Animated API supported in React Native. At the end of this exercise you will be able to:
+Add animations using the Animated API to your app
+The animated API provides us with quite a flexible way of adding animations to our application.
+We will see in this exercise how we can add animations by transforming certain properties as a function of time using the animated API.
+
+1.Animations
+  Open HomeComponent.js and update it
+  Save all the changes and do a Git commit with the message "Animations".
+
+Conclusions
+In this exercise you learnt to add animations using the Animated API.
+
