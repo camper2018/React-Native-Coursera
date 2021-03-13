@@ -882,3 +882,18 @@ In this exercise you will use a swipe gesture to reveal option buttons under a l
 
 Conclusions
 In this exercise you have learnt to use swipeout to reveal option buttons and support deleting favorite
+
+Exercise (Instructions): Alert
+
+Objectives and Outcomes
+In this exercise you will learn to use the Alert dialog to show alerts to the users. In particular we will use the alert to confirm the deletion of favorites. At the end of this exercise you will be able to:
+
+1.Use alert dialogs to show alerts to users
+2.Take an action upon user confirmation
+
+1.Alert
+  Open FavoritesComponent.js and update it.
+  Save all the changes and do a Git commit with the message "Alert".
+
+Conclusions
+In this exercise you learnt to use an Alert dialog.

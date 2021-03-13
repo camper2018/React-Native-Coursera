@@ -66,7 +66,7 @@ function RenderDish(props) {
             name="pencil"
             type="font-awesome"
             color="#512DA8"
-            onPress={() => props.toggleModal()}
+            onPress={props.toggleModal}
           />
         </View>
       </Card>
@@ -80,16 +80,17 @@ function RenderComments(props) {
   const comments = props.comments;
 
   const renderCommentItem = ({ item, index }) => {
+    let rating = parseInt(item.rating);
     return (
       <View key={index} style={{ margin: 10 }}>
         <Text style={{ fontSize: 14, paddingBottom: 7 }}>{item.comment}</Text>
-        {/* <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text> */}
-        <Rating
-          startingValue={Number(item.rating)}
-          readonly={true}
+        <Text style={{ fontSize: 12 }}>{item.rating} Stars</Text>
+        {/* <Rating
+          startingValue={rating}
+          readonly
           imageSize={10}
           style={{ alignItems: "left", paddingBottom: 7 }}
-        />
+        /> */}
         <Text style={{ fontSize: 12, paddingBottom: 7 }}>
           {"-- " + item.author + ", " + item.date}{" "}
         </Text>
@@ -155,7 +156,7 @@ class Dishdetail extends Component {
           dish={this.props.dishes.dishes[+dishId]}
           favorite={this.props.favorites.some((el) => el === dishId)}
           onPress={() => this.markFavorite(dishId)}
-          toggleModal={() => this.toggleModal()}
+          toggleModal={this.toggleModal}
         />
         <RenderComments
           comments={this.props.comments.comments.filter(
@@ -166,9 +167,7 @@ class Dishdetail extends Component {
           animationType={"slide"}
           transparent={false}
           visible={this.state.showModal}
-          onRequestClose={() => {
-            this.toggleModal();
-          }}
+          onRequestClose={this.toggleModal}
         >
           <View style={{ marginTop: 50 }}>
             <Rating
@@ -176,23 +175,21 @@ class Dishdetail extends Component {
               minValue={1}
               fractions={0}
               startingValue={3}
-              onDismiss={() => {
-                this.toggleModal();
-              }}
-              onFinishRating={(rating) => this.setState({ rating: rating })}
+              onDismiss={this.toggleModal}
+              onFinishRating={(value) => this.setState({ rating: value })}
             />
           </View>
           <View>
             <Input
               placeholder="Author"
               leftIcon={{ type: "font-awesome", name: "user-o", size: 24 }}
-              onChangeText={(author) => this.setState({ author: author })}
+              onChangeText={(value) => this.setState({ author: value })}
             />
             <Input
               placeholder="Comment"
               leftIcon={{ type: "font-awesome", name: "comment-o", size: 24 }}
-              onChangeText={(comment) => {
-                this.setState({ comment });
+              onChangeText={(value) => {
+                this.setState({ comment: value });
               }}
             />
           </View>

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { FlatList, View, Text } from "react-native";
+import { FlatList, View, Text, Alert } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
 import Swipeout from "react-native-swipeout";
 import { deleteFavorite } from "../redux/ActionCreators";
+
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
@@ -16,9 +17,6 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFavorite: (dishId) => dispatch(deleteFavorite(dishId)),
 });
 class Favorites extends Component {
-  // static navigationOptions = {
-  //   title: "My Favorites",
-  // };
   render() {
     const renderMenuItem = ({ item, index }) => {
       const { navigate } = this.props.navigation;
@@ -26,7 +24,28 @@ class Favorites extends Component {
         {
           text: "Delete",
           type: "delete",
-          onPress: () => this.props.deleteFavorite(item.id),
+          onPress: () => {
+            Alert.alert(
+              "Delete Favorite?",
+              "Are you sure you wish to delete the favorite dish " +
+                item.name +
+                "?",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log(item.name + " Not Deleted"),
+                  style: "cancel",
+                },
+                {
+                  text: "OK",
+                  onPress: () => this.props.deleteFavorite(item.id),
+                },
+              ],
+              {
+                cancelable: false,
+              }
+            );
+          },
         },
       ];
       return (
