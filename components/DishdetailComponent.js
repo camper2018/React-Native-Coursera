@@ -20,6 +20,7 @@ import * as Aminatable from "react-native-animatable";
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation",
   "componentWillReceiveProps has been renamed, and is not recommended for use.",
+  "componentWillMount has been renamed, and is not recommended for use.",
 ]);
 
 const mapStateToProps = (state) => {

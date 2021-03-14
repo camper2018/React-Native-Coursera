@@ -990,3 +990,58 @@ Use animations as a way of giving visual feedback to users in response to gestur
 
 Conclusions
 In this exercise you saw the use of animations as a way of providing visual feedback to users in response to gestures.
+
+Persist Redux Store: Objectives and Outcomes
+
+The state of our Redux store is reset when we restart our application.
+In this lesson you will learn to persist the Redux store to storage and rehydrate the state from the persisted information in storage.
+At the end of this lesson you will be able to:
+
+1.Persist the state of your Redux store
+2.Rehydrate the state from the persisted store
+
+Redux-Persist enables you to persist your Redux state into the persistent storage on your device between application launches.
+Redux-Persist provides a persistCombinedReducers, which takes multiple reducers and then produces the corresponding combined reducer.
+The persistCombinedReducer takes as its first parameter a config, which is a JavaScript object.
+Within the config object, we specify the particular storage that we want to use for persisting the storage, we specify a key, and some additional information, which parts of the state to persist, and whether you want to not persist certain parts of your Redux store, and so on.
+So, all these can be configured in the configuration object.
+Now, we can use different kinds of storage for persisting our state in our device.
+By default Redux-Persist uses local storage.
+We can use session storage, we can use AsyncStorage that comes with Redux store, you can even use secure store, and any other storage, or even persisted into files on the device if you so choose to.
+When you configure Redux-Persist, you pass the store to persist store, which then ensures that your Redux state is saved to the persistent storage every time the state changes.
+So, this is automatically done for you by Redux-Persist.
+Once you put Redux-Persist into place with your Redux store, then how do you integrate that into your React application?
+So, this is where the Redux-Persist provides its own integration mechanism for integrating the Redux-Persist with your React application.
+Within your React Native application, or your React application, you wrap your root component using PersistGate, which is exported by Redux-Persist,
+and this PersistGate when applied to wrap your root component, then the PersistGate will delay the rendering of the UI until the Redux store is rehydrated from that persistent store.
+So in this case, if there is a short delay for updating the Redux store from the persistent storage, then the PersistGate takes a loading component as one of the parameters, and then uses that loading component and displays that loading component on the screen.
+We have already configured our React Native application with the loading component, so we can just pass that in as one of the props for persist store, and that will automatically ensure that the loading component is displayed while your Redux-Persist is rehydrating your Redux store.
+With this quick understanding of Redux-Persist, let's move on to the exercise, where we will configure our React Native application to make use of Redux-Persist.
+Now, in this course, I am using the basic essentials from Redux-Persist.
+It is lot more powerful, and you can use a lot more of the advanced features, once you get comfortable using Redux-Persist.
+Redux Persist itself can be used even with a React web application if you so choose to.
+But typically the persistence across app restart is more of the concern in a mobile application, than a web application.
+Typically for a web application we assume that we are connected to the Internet and we should be able to refresh the state of the application.
+But with a mobile device you may be off the network sometimes.
+And you may still, when you restart your app, at least you want to give the user at least a minimum user experience with minimum amount of information displayed within your app.
+So this is where the persistence of the Redux tool enables you to add in offline support for your application automatically.
+
+Exercise (Instructions): Persist Redux Store
+
+Objectives and Outcomes
+In this exercise you will learn to use redux-persist to persist the state of your Redux store, and rehydrate it when you restart your app. At the end of this exercise you will be able to:
+1.Set up and configure redux-persist
+2.Persist your store and rehydrate on restart of the app
+
+1.Persist Store
+  First, install redux-persist by typing the following at the prompt:
+    yarn add redux-persist@5.9.1
+    note: newer version of redux-persist is throwing error so use this version
+  Then, open configureStore.js and update it.
+  Then, open App.js and update it.
+  Save all the changes and do a Git commit with the message "Persist Redux Store".
+
+Conclusions
+In this exercise you learnt to persist the Redux store and rehydrate it upon restart.
+
+
