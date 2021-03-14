@@ -979,6 +979,7 @@ Exercise (Instructions): Gestures Part 2
 Objectives and Outcomes
 In this exercise we will continue with the use of PanResponder to respond to gestures.
 In addition we will add in animation as a way of giving visual feedback to the user.
+For that we will use animatable module that we have already installed.
 At the end of this exercise you will be able to:
 
 Use animations as a way of giving visual feedback to users in response to gestures
