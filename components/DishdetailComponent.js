@@ -16,7 +16,7 @@ import { postFavorite } from "../redux/ActionCreators";
 import { postComment } from "../redux/ActionCreators";
 import { LogBox } from "react-native";
 import * as Aminatable from "react-native-animatable";
-// To ignore VirtulizedLists warning
+// To ignore warnings
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation",
   "componentWillReceiveProps has been renamed, and is not recommended for use.",
@@ -37,13 +37,13 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(postComment(dishId, rating, author, comment));
   },
 });
-function RenderDish(props) {
+const RenderDish = (props) => {
   const dish = props.dish;
   // handleViewRef, which receives the reference as a parameter,
   // And then this.view will be assigned the reference to that particular view where we placed the ref property.
   // Now, we need the reference to the view in order to do an animation on that view programmatically within our application.
   // So for that, the animatable module supports programmatically adding in an animation to a view of our application.
-  handleViewRef = (ref) => (this.view = ref);
+  // handleViewRef = (ref) => (this.view = ref);
   const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
     // MoveX is the latest screen coordinates of the recently moved touch gesture
     // and similarly moveY is the screen coordinates of the recently moved touch,
@@ -64,6 +64,13 @@ function RenderDish(props) {
       false;
     }
   };
+  const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+    if (dx > 200) {
+      return true;
+    } else {
+      false;
+    }
+  };
   //PanResponder.create() accepts  multiple callbacks or handlers as below:
   const panResponder = PanResponder.create({
     // onStartShouldSetPanResponder starts when user gesture begins on the screen and gives access to event and gesture state.
@@ -74,16 +81,16 @@ function RenderDish(props) {
     //  this cb will be called when the PanResponder starts recognizing and it has been granted the permission to respond to the pan.
     // So, the rubberBand animation is what I'm going to apply to the view to which I already set the reference.
     // This animation will apply whenever user does any type of gesture on this  screen view.
-    onPanResponderGrant: () => {
-      this.view.rubberBand(1000).then((endState) =>
-        // When the animation ends, we get endState.
-        // This log here will tell me whether the animation was done correctly or not.
-        // The finished will be either true or false.
-        // If it is true, then that means that the animation was performed correctly,
-        // if not, then the animation has been cancelled.
-        console.log(endState.finished ? "finished" : "cancelled")
-      );
-    },
+    // onPanResponderGrant: () => {
+    //   this.view.rubberBand(1000).then((endState) =>
+    //     // When the animation ends, we get endState.
+    //     // This log here will tell me whether the animation was done correctly or not.
+    //     // The finished will be either true or false.
+    //     // If it is true, then that means that the animation was performed correctly,
+    //     // if not, then the animation has been cancelled.
+    //     console.log(endState.finished ? "finished" : "cancelled")
+    //   );
+    // },
     // So this one will be invoked when the user lifts their finger off the screen after performing the gesture.
     // gestureState is passed to recognizeDrag() which provides us certain properties like moveX, moveY etc
     // and we can use them to recognize the gesture done by user and how we want to respond to it.
@@ -112,6 +119,9 @@ function RenderDish(props) {
           { cancelable: false }
         );
         return true;
+      } else if (recognizeComment) {
+        props.toggleModal();
+        return true;
       }
     },
   });
@@ -121,7 +131,7 @@ function RenderDish(props) {
         animation="fadeInDown"
         duration={2000}
         delay={1000}
-        ref={this.handleViewRef}
+        // ref={handleViewRef}
         // Animatable view will call ref which is set to this.handleViewRef to perform specified gesture.
         {...panResponder.panHandlers}
         // All the  pan handler functions that we have implemented or callback functions that we have implemented will be added in to this view.
@@ -174,8 +184,7 @@ function RenderDish(props) {
   } else {
     return <View></View>;
   }
-  h;
-}
+};
 function RenderComments(props) {
   const comments = props.comments;
 
@@ -233,8 +242,6 @@ class Dishdetail extends Component {
   }
 
   handleComment = (dishId) => {
-    // console.log(JSON.stringify(this.state));
-    // const dishId = this.props.route.params.dishId;
     const { rating, comment, author } = this.state;
     this.props.postComment(dishId, rating, author, comment);
     this.toggleModal();
@@ -248,6 +255,7 @@ class Dishdetail extends Component {
       comment: "",
     });
   }
+
   render() {
     // navigation and route props are passed to all the screen components by Stack Navigator
     const dishId = this.props.route.params.dishId;
@@ -260,6 +268,7 @@ class Dishdetail extends Component {
           onPress={() => this.markFavorite(dishId)}
           toggleModal={this.toggleModal}
         />
+
         <RenderComments
           comments={this.props.comments.comments.filter(
             (comment) => comment.dishId === dishId
