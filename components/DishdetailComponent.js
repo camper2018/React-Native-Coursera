@@ -44,6 +44,7 @@ const RenderDish = (props) => {
   // Now, we need the reference to the view in order to do an animation on that view programmatically within our application.
   // So for that, the animatable module supports programmatically adding in an animation to a view of our application.
   // handleViewRef = (ref) => (this.view = ref);
+
   const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
     // MoveX is the latest screen coordinates of the recently moved touch gesture
     // and similarly moveY is the screen coordinates of the recently moved touch,
@@ -83,6 +84,7 @@ const RenderDish = (props) => {
     // This animation will apply whenever user does any type of gesture on this  screen view.
     // onPanResponderGrant: () => {
     //   this.view.rubberBand(1000).then((endState) =>
+
     //     // When the animation ends, we get endState.
     //     // This log here will tell me whether the animation was done correctly or not.
     //     // The finished will be either true or false.
@@ -118,11 +120,10 @@ const RenderDish = (props) => {
           ],
           { cancelable: false }
         );
-        return true;
       } else if (recognizeComment) {
         props.toggleModal();
-        return true;
       }
+      return true;
     },
   });
   if (dish != null) {
