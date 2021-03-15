@@ -43,8 +43,8 @@ const RenderDish = (props) => {
   // And then this.view will be assigned the reference to that particular view where we placed the ref property.
   // Now, we need the reference to the view in order to do an animation on that view programmatically within our application.
   // So for that, the animatable module supports programmatically adding in an animation to a view of our application.
-  // handleViewRef = (ref) => (this.view = ref);
 
+  // handleViewRef = (ref) => (this.view = ref);
   const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
     // MoveX is the latest screen coordinates of the recently moved touch gesture
     // and similarly moveY is the screen coordinates of the recently moved touch,
@@ -65,6 +65,7 @@ const RenderDish = (props) => {
       false;
     }
   };
+
   const recognizeComment = ({ moveX, moveY, dx, dy }) => {
     if (dx > 200) {
       return true;
@@ -73,59 +74,60 @@ const RenderDish = (props) => {
     }
   };
   //PanResponder.create() accepts  multiple callbacks or handlers as below:
-  const panResponder = PanResponder.create({
-    // onStartShouldSetPanResponder starts when user gesture begins on the screen and gives access to event and gesture state.
+  const panResponder = React.useRef(
+    PanResponder.create({
+      // onStartShouldSetPanResponder starts when user gesture begins on the screen and gives access to event and gesture state.
 
-    onStartShouldSetPanResponder: (e, gestureState) => {
-      return true;
-    },
-    //  this cb will be called when the PanResponder starts recognizing and it has been granted the permission to respond to the pan.
-    // So, the rubberBand animation is what I'm going to apply to the view to which I already set the reference.
-    // This animation will apply whenever user does any type of gesture on this  screen view.
-    // onPanResponderGrant: () => {
-    //   this.view.rubberBand(1000).then((endState) =>
-
-    //     // When the animation ends, we get endState.
-    //     // This log here will tell me whether the animation was done correctly or not.
-    //     // The finished will be either true or false.
-    //     // If it is true, then that means that the animation was performed correctly,
-    //     // if not, then the animation has been cancelled.
-    //     console.log(endState.finished ? "finished" : "cancelled")
-    //   );
-    // },
-    // So this one will be invoked when the user lifts their finger off the screen after performing the gesture.
-    // gestureState is passed to recognizeDrag() which provides us certain properties like moveX, moveY etc
-    // and we can use them to recognize the gesture done by user and how we want to respond to it.
-    onPanResponderEnd: (e, gestureState) => {
-      // This will return a true if this is a swipe left gesture that the user has done.
-      // If that is the case then we're going to interpret that gesture to mean that the user wants to add this particular dish to his or her list of favorite dishes.
-      // So, that's where we will generate an alert
-      if (recognizeDrag(gestureState)) {
-        Alert.alert(
-          "Add to Favorites?",
-          "Are you sure you wish to add " + dish.name + " to your favorites?",
-          [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel pressed"),
-              style: "cancel",
-            },
-            {
-              text: "OK",
-              onPress: () =>
-                props.favorite
-                  ? console.log("Already favorite")
-                  : props.onPress(),
-            },
-          ],
-          { cancelable: false }
-        );
-      } else if (recognizeComment) {
-        props.toggleModal();
-      }
-      return true;
-    },
-  });
+      onStartShouldSetPanResponder: (e, gestureState) => {
+        return true;
+      },
+      //  this cb will be called when the PanResponder starts recognizing and it has been granted the permission to respond to the pan.
+      // So, the rubberBand animation is what I'm going to apply to the view to which I already set the reference.
+      // This animation will apply whenever user does any type of gesture on this  screen view.
+      // onPanResponderGrant: () => {
+      //   this.view.rubberBand(1000).then((endState) =>
+      //     // When the animation ends, we get endState.
+      //     // This log here will tell me whether the animation was done correctly or not.
+      //     // The finished will be either true or false.
+      //     // If it is true, then that means that the animation was performed correctly,
+      //     // if not, then the animation has been cancelled.
+      //     console.log(endState.finished ? "finished" : "cancelled")
+      //   );
+      // },
+      // So this one will be invoked when the user lifts their finger off the screen after performing the gesture.
+      // gestureState is passed to recognizeDrag() which provides us certain properties like moveX, moveY etc
+      // and we can use them to recognize the gesture done by user and how we want to respond to it.
+      onPanResponderEnd: (e, gestureState) => {
+        // This will return a true if this is a swipe left gesture that the user has done.
+        // If that is the case then we're going to interpret that gesture to mean that the user wants to add this particular dish to his or her list of favorite dishes.
+        // So, that's where we will generate an alert
+        if (recognizeDrag(gestureState)) {
+          Alert.alert(
+            "Add to Favorites?",
+            "Are you sure you wish to add " + dish.name + " to your favorites?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel pressed"),
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: () =>
+                  props.favorite
+                    ? console.log("Already favorite")
+                    : props.onPress(),
+              },
+            ],
+            { cancelable: false }
+          );
+        } else if (recognizeComment) {
+          props.toggleModal();
+        }
+        return true;
+      },
+    })
+  ).current;
   if (dish != null) {
     return (
       <Aminatable.View
@@ -186,6 +188,7 @@ const RenderDish = (props) => {
     return <View></View>;
   }
 };
+
 function RenderComments(props) {
   const comments = props.comments;
 

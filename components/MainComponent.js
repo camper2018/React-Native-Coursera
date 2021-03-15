@@ -22,6 +22,7 @@ import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import Reservation from "./ReservationComponent";
 import Favorites from "./FavoriteComponent";
+import Login from "./LoginComponent";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import {
@@ -246,6 +247,36 @@ function FavoritesStackScreen({ navigation }) {
     </FavoritesNavigator.Navigator>
   );
 }
+const LoginNavigator = createStackNavigator();
+function LoginStackScreen({ navigation }) {
+  return (
+    <LoginNavigator.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#512DA8" },
+        headerTintColor: "#fff",
+        headerTitleStyle: { color: "#fff" },
+        headerLeft: () => (
+          <Icon
+            name="menu"
+            size={24}
+            color="white"
+            onPress={() => navigation.toggleDrawer()}
+            style={{ marginLeft: 10 }}
+          />
+        ),
+      }}
+    >
+      <LoginNavigator.Screen
+        name="Login"
+        component={Login}
+        options={{
+          title: "Login",
+          drawerLabel: "Login",
+        }}
+      />
+    </LoginNavigator.Navigator>
+  );
+}
 // Using Drawer-Based Navigation
 
 const MainNavigator = createDrawerNavigator();
@@ -257,6 +288,20 @@ function MainDrawerScreen() {
       // DrawerContent={CustomDrawerContentComponent}
       drawerContent={(props) => <CustomDrawerComponent {...props} />}
     >
+      <MainNavigator.Screen
+        name="Login"
+        component={LoginStackScreen}
+        options={{
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name="sign-in"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+          ),
+        }}
+      />
       <MainNavigator.Screen
         name="Home"
         component={HomeStackScreen}

@@ -1076,3 +1076,179 @@ Add support for a left to right gesture in the Dishdetail component. When the us
 To do this, implement a new function named recognizeComment() that is passed in the gesture state as the parameter. It then recognizes and returns true if the left to right gesture is done, false otherwise.
 Use this function in the PanResponder methods to toggle the showing of the comment form modal.
 
+
+The Expo SDK:
+
+Objectives and Outcomes
+In this lesson we will get a brief introduction to the Expo SDK and how it enables us to access the native capabilities of mobile devices. At the end of this lesson you will be able to:
+1. Understand the salient features of the Expo SDK
+2. Evaluate how the Expo SDK enables us to access the native device capabilities
+
+The Expo SDK itself is a free and open source tool chain that is built to support development of React Native applications.
+That Create React Native App that we installed and scaffolded out our application makes use of the support of the Expo tool chain.
+We have been using the Expo client already for viewing our React Native application on the mobile device.
+So, we already have some initial introduction to the expo toolset and made use of some of the tools already.
+But Expo, in addition, also provides a Native JavaScript based library that provides access to many of the device's Native functionality.
+Things like the camera, the contacts, the local storage, the calendar, sensors and many more.
+Now, if you are developing a React Native application, you are obviously going to expect that at some point in time, you would need access to the Native devices capabilities.
+Now, there are many ways of going about achieving this.
+You could develop the React Native App, and then go on to add in the Native device functionality by using pure Native code, and then plugging it into your React Native App, and then leverage that from within your React Native apps JavaScript code.
+Now, of course, that is the cumbersome approach to adopt in this case.
+The Expo SDK package has a whole bunch of Native device access capabilities into a easy-to-use software development kit, which we can then leverage to access the Native devices capabilities from the comfort of JavaScript.
+So, we are completely freed from having to concern ourselves about how to write Native code.
+That is already taken care of by the Expo SDK.
+Now, of course, there are limitations which I'm going to talk about it at the end of this lecture, but the important thing to note is that the Expo SDK provides a convenient packaging of the access to the Native devices capabilities.
+Indeed, you can develop many React Native applications using simply the functionality that the Expo SDK provides for us.
+The Expo toolset provides a set of UI components that take care of several use-cases.
+It gives us access to icons, which in turn we have actually made use of within the React Native elements, and also we used the icons in several places within our application already.
+Similarly, the Expo SDK makes use of blur views, which we didn't use in this course.
+I haven't found a specific use-case for that, and so, we haven't applied that.
+In addition, the Expo also provides several other UI components that are useful for your application.
+Not just that. As I said, in this module, we are going to examine the use of the Expo SDK for accessing the Native device capabilities.
+Also, the Expo environment provides services for apps.
+Things like managing assets, supporting push notifications, building Native binaries for deployment on the real device.
+So far, we haven't talked about how we would actually build an APK for our Android application, or build the application for putting on the App Store to be made available for our iOS devices.
+But the Expo toolset provides a convenient way where you don't even need to install any of the Native development tools like Xcode or Android Studio in order to build your application for deployment on the Native device.
+We will explore that briefly towards the end of this module.
+But the factOf course, there are use-cases where you may really need to drop-down into Native code, but that would be far and few in between for many applications that you would normally develop using React Native.
+The Expo client itself, we have explored that in a lot of detail in this course. We have actually leveraged that in order to examine our React Native application, and then view the changes as we make changes to our React Native application.
+We have been able to wirelessly serve our application to the device, and then view the application on the device.
+So, that we have already done extensively in this course. In addition, the Expo toolset also provides a command line interface for doing development.
+If you are uncomfortable with using the command line interface, then Expo also provides an Expo Development Environment or the XDE, if you so choose to.
+The create-react-native-app that we have been using has helped us to get us all the way up to this point, and then we would see that even the exercises in this course, we can easily do simply remaining with create-react-native-app.
+We won't actually drop into using the XDE at this moment.
+The only time where we may need to resort to using the CLI or the XDE in this course is when we need to do the building of the binaries for the two data platforms, iOS and Android, which we'll look at at the end of this module.
+Now, obviously in your mind, you would probably have this question. How is Expo related to the create-react-native-app that we have been using so far?
+How do they interact? Can I move from an app that I developed using create-react-native app (CRNA) back into Expo, and then make use of it and so on?
+Indeed, what you scaffolded out with the create-react-native-app, CRNA for short, you have been using Expo without doing any further configuration.
+With CRNA, you don't really need an Expo account. But if you want to build the binaries, then you would register for an Expo account.
+Once you register for an Expo account, the Expo account allows you to publish your project with the public URL so that anybody over the Internet can download and use your React Native application.
+So far, we have been able to connect with the server that we have been running using yarn start in our computer, and then we have been able to wirelessly connect, provided the Expo client is used within the same wireless network as your computer.
+So, your computer is using something called ngrok in order to be able to serve up your React Native application, and then we're able to to access that using the Expo client on our mobile device and being able to do that.
+But suppose you want to distribute your React Native based mobile application to other users.
+Then the Expo account provides you a way of making your application available at a public URL, which people can then access.
+And then- Access and download it into their device using an Expo client and be able to make use of your React Native application on their devices.
+It also allows you to build binaries for, as I said, the App Store or the Play Store distribution without using the Expo account.
+If you wish to do that with create-react-native app, then you will have to eject out of the CRNA, and then use the native tools, Xcode or Android Studio, in order to further do the development.
+So, if you don't want to use the Expo account, and use the online way of generating the binaries, then you always have the other path where you can use the native development tools on your device.
+But be warned that if you have a Windows computer, you can only use that path for developing for Android devices.
+You need a Mac with Xcode installed if you want to do development for an iOS device.
+But also, there will be situations where you may have a special case, where Expo may not provide the support for accessing some of the native devices capabilities, or you don't have access to that.
+In those special circumstances, you have no other choice but to eject out of this, and that is very straight forward.
+Once you eject out of CRNA, then whatever you use for make Expo SDK Gits package into the ejected application, and you can continue to use the Expo API without any problem at all.
+So, that's something that you can easily remain with.
+No Again, I take everything that is said on the internet with a big rock of salt, and not just a grain of salt.
+Again, your mileage may vary. So, I will leave you with that message at that point. To me, we have already found a way of being able to master react-native-application development without ever having to go down into the native environment all the way so far.
+And you have all the skills that you need for doing react-native-application development within the comfort.
+There is always that going beyond what we have learnt. That I will leave it as an exercise for you to pursue after you get sufficient experience doing react-native-application development using the Expo environment that we have been using so far.
+Again, as a beginner, my intention is to get you quickly over that initial hump of the ramping up to being able to develop react-native-applications, but then there is always that law of diminishing returns where those extra skills that you need to to acquire in order to be able to do those minute little details that cannot be done with Expo, that I will leave that as an exercise for you after you get out of the create-react-native-application environment.
+Now, as I said, Expo does have limitations. Let's be honest and explore those issues.
+For many applications that you develop, these may not be of much concern, but there would be always that special case where you need to go beyond, and that is the situation that we should be fully aware of before we move forward.
+So, what does Expo restrict you to, or what are the limitations of the Expo approach for development?
+So, this information is directly from the Expo site.
+So, they themselves honestly tell you what cannot be done using Expo, at least at this moment.
+The first thing is that Expo apps don't support background code execution at this moment. So, doing things in a background thread is not supported.
+But again, there are situations where you may need that, but in most simple applications, that is not much of a concern.
+Secondly, not all iOS and Android APIs, the native APIs, not all of them are available in Expo.
+For example, if you need access to Bluetooth to be able to connect to an IoT device or something like that, those are special cases where you really need to get those additional skills to be able to do that.
+This course is not meant for that. We are looking at getting a basic react-native-application with many capabilities indeed, out, still remaining within the JavaScript environment.
+Third point, if you need to keep your app size extremely lean, then Expo may not be the best choice because the Expo SDK adds in its own code for supporting your application.
+If that becomes an issue for you, then maybe Expo is not suited for you.
+Most recent mobile devices, that is not a big issue at all. If you are targeting a mobile device from like, say five or six years ago, then maybe that may be an issue because of the memory limitations there, but most modern devices, you can get away with using Expo without much of a problem.
+If you want to use a particular push notification service that you need to leverage within your application, and you're not happy with what the Expo SDK already exposes for you, then maybe it is time to jump out of Expo.
+Again, even with Expo, you can do a lot of the development at the point where you encounter the limitation, you can eject out of Expo packaging whatever you have done, and then move out into native development at that point.
+That JS and assets managed by Expo require access to the Google Cloud Platform and AWS in situations.
+We have actually not used this in the application that we are developing in this course so far, so that is not much of a concern, and even without that, we have been able to get this far developing a pretty useful react-native application.
+So, again, these are limitations that you need to keep in mind as you go further in developing your react-native-application.
+Having said all this, let's now explore some of the APIs that Expo provides for enabling us to access the native devices capabilities.
+We'll look at the use of local notifications, we can even do push notifications if you require using Expo where we're going to look at the use of secure storage on the mobile device, then we will look at the use of being able to share information from your mobile device either through email or to any of the social media accounts.
+Then we'll look at how we can access the camera, as well as the photo gallery on our device to be able to get an image from there, and then use it within our application, and we'll look at how we can access the network information and so on.
+I haven't explored the use of the sensors and the location aspects of the device. That is a little bit advanced for this course, but even that, you can do still remaining within the Expo SDK and the Expo environment.
+That is one step beyond what this course is expected to cover, but when I get a chance, I will explore some of those and maybe post some blog articles about how I use them.
+I have actually tried them out separately, but I believe that that is too much for this introductory course on react-native.
+But if you have interest in that, then there's enough documentation on the Expo site to how you can access the accelerometer, how you can access the location services, maps, and so on, from within the JavaScript environment.
+
+Secure Store:
+Objectives and Outcomes
+
+In this lesson we will explore the key-value based storage that is supported in React Native.
+The AsyncStorage provides a simple, unencrypted, asynchronous, persistent, key-value storage system that is global to the app.
+The Secure store i the Expo SDK provides a way to encrypt and securely store key–value pairs locally on the device.
+At the end of this lesson you will be able to:
+1.Configure your app to take advantage of the secure store provided by Expo SDK
+2.Store and retrieve key-value pairs in the secure store.
+
+
+Secure Store:
+One of the first APIs that we will explore from Expo SDK is the SecureStore API, where we get access to a secure way of storing information on our device using Key-Value pair storage.
+The React Native environment itself supports and provides an access to an async store, which provides a simple unencrypted asynchronous persistent key-value storage system.
+And you can easily import AsyncStorage within your React Native application, and then make use of it to store data in the form of key-value pairs.
+This is global to the application.
+And instead of using local storage that typically is used with your web application, we can make use of the AsyncStorage in this case.
+Now typically, when you use the AsyncStorage within your React Native application, you would normally build an abstraction around it so you will build a class which uses asynchronous storage inside.
+And then export a couple of functions, and then that can then be used by the rest of your application.
+Now the AsyncStorage itself on iOS, is backed by Native code that is implemented, that stores small values in a serialized dictionary in your device,
+and for larger values, it stores them in separate files.
+On Android, the AsyncStorage is mapped into RocksDB or the SQLite database that is built into Android based on whatever is available on your device will be exploited for this purpose.
+Now with AsyncStorage, you can do typical get and set operations on key-value pairs, so you can do a set with a key and a value supplied, and then you can do a get with a key and a default value supplied.
+And you can clear the data on your device. So there are many operations that you can even do multi get and multi set and so on with AsyncStorage.
+Now that is one easy way of being able to leverage the local key-value storage to store small amount of data on your device, useful for your application.
+An example of usage of this would be to store settings for your application.
+
+If you want a more secure storage on your device, then the Export SDK supports SecureStore.
+This is a storage that encrypts the data that is stored on your device.
+It provides a way of encrypting and securely storing key value pairs.
+Again, SecureStore also based around the key-value pair approach for storing data and it stores the data securely on your device separately for each project.
+So each project will have it's own SecureStore and not accessible outside that particular application.
+In iOS, the value is stored using key-value chains using kSecClassGenericPassword approach.
+If you know something about iOS development, then that's how the SecureStore leverages the support from iOS to be able to store the data.
+On Android, the values are stored in SharedPreferences, where if you have done any Android development then you know how SharedPreferences allow you to do key-value storage.
+That is what is leveraged by SecureStore, but encrypted and stored in SharedPreferences.
+And this encryption is done using the Android key store system, so that is the way it supports SecureSstorage.
+Now typical methods that are supported by SecureStore include setItemAsync, getItemAsync, deleteItemAsync.
+All these typically take a key, and in situations where you know to store the data it will take the corresponding value.
+When you need to retrieve the data, you'll give the key and a default value. And also takes additional options when you store and retrieve items.
+In the exercise, I'm going to leverage the SecureStore for storing data on the device.
+
+In the React Native application, I'm going to create a component called the login component, where the user typically types in the username and a password.
+And then checks on a check box called Remember Me, and then logs into the system.
+When the user first time logs into the system, if the user checks the Remember Me,
+then this username and password information is going to be persistent in the SecureStore on my device.
+So when I log in into the system and click on the login, right now I haven't implemented the server site support for log in.
+That will be done in the next course.
+And when we clicked on the log in, the log in process will be done by communicating with the server.
+And then at that point your application will then go to their home component and then display the information with, specifically tailored to the login user.
+But if you do that, subsequently, if the user navigates away from this page and then later on if the user opens the application again,
+the username and password will be retrieved from the SecureStore and automatically filled in to form there,
+or you may even arrange for the application to automatically login the user when the user restarts the application.
+As an example here, I'll illustrate that when I go back to the log in page, you can see that the information is still there.
+Now to show you that the information actually is stored in the SecureStore, I will uncheck the remember me and login to the system.
+When I uncheck that, then the user information is not going to be persisted in the SecureStore.
+So now if I login and then go off to another component.
+Let me navigate away from here, say to the home component.
+And then I come back again to the login component here.
+You would now notice that the user name and password is not filled automatically, because we didn't save this information.
+So this is an example of the use of SecureStore for securely storing a small amount of information on your mobile device for your application.
+And then being able to retrieve and make use of it in the application where required.
+
+Exercise (Instructions): Secure Store
+Objectives and Outcomes
+
+In this exercise you will configure your app to make use of secure store from Expo SDK to enable storing and retrieving data in the form of key-value pairs.
+At the end of this lesson you will be able to:
+1.Configure your app with secure store
+2.Store and retrieve data using key-value pairs
+In this exercise, we're going explore the use of secure store in order to store the login information for the user within our application.
+So we're going to create a form for the user to log into our site, and store the username and password for the user in the secure store.
+So that subsequently, the user doesn't need to enter this information.
+
+1.Using Secure Store
+  First install secure-store as:
+    expo install expo-secure-store
+  Add a new file named LoginComponent.js in the components folder and add code to it.
+  Then, update MainComponent.js to incorporate the LoginComponent.
+  Save all the changes and do a Git commit with the message "Secure Store".
+
+Conclusions
+In this exercise you will learn to use the secure store from Expo SDK for secure storage of key-value pair based data
+
