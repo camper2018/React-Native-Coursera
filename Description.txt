@@ -1252,3 +1252,75 @@ So that subsequently, the user doesn't need to enter this information.
 Conclusions
 In this exercise you will learn to use the secure store from Expo SDK for secure storage of key-value pair based data
 
+Local Notifications:
+Notifications are par for the course on most mobile devices.
+Notifications are the easy way of drawing the attention of the mobile device user to any event or any information that you may wish to deliver to the user.
+Indeed, notifications are extensively used by most mobile applications.
+In this module, we'll examine the use of local notifications, how your app can generate a local notification, then put that into the notification bar on your device.
+Now, we're not talking about push notifications.
+Push notifications require server-side support.
+The server should be able to push the notification.
+But ultimately, when the notification is pushed to your device, your device will still put a local notification into the notification bar.
+In this lesson, we'll examine the use of local notifications and how we can use Expo SDK to be able to generate and put a local notification into the notification bar of your mobile device.
+So, putting the local notification into the notification bar of your device is a standard use case in most mobile applications.
+Now, this is where you need to leverage the native devices capabilities for being able to put the notification.
+So, a notification is typically, as I said, used for reminding the user of some information.
+Notification support from Expo SDK provides you access to both remote notifications, also known as push notifications, and also local notifications.
+You can even schedule local notifications to be put at a specific time.
+Say, for example, you are developing an application where you need to remind the user at a specific time.
+As an example, you are developing an application that reminds the user to exercise every single morning.
+Then, every single morning, you may wish to schedule to put a notification into the notification bar reminding the user that they are supposed to exercise that day for at least 30 minutes.
+Well, it's beside the point whether the user actually exercises or not, but at least the mobile app will do its duty in reminding the user just like a typical spouse.
+That's one example of where you can use local notifications.
+Similarly, if you're using a calendaring-based application, you may wish to remind the user of a prescheduled event from that calendar and so on.
+Also, maybe there are situations where something happens within your application, and then you may wish to alert the user about this issue, and so on.
+So, in this lesson, we'll look at, for example, when the user submits a request for reserving a table at our restaurant, then we will put a notification into the notification bar to remind the user that their restaurant reservation request has been submitted.
+Now, you could also put a notification after the restaurant confirms the reservation, but that would be more of a push notification rather than a local notification.
+So, how do we generate local notifications in your React Native application using the Expo SDK?
+So, there are several methods that Expo support for local notifications provides.
+It provides you with a presentLocalNotificationAsync method which takes the local notification JavaScript object as a parameter, and puts the local notification.
+You can schedule a local notification supplying the notification object, and then also the scheduling options as another JavaScript object.
+You can dismiss an already generated local notification by specifying the localNotificationId.
+When you put a local notification, then it'll return an ID for the notification that is put into the notification bar.
+Then, you can use that to go and delete the notification from the notification bar.
+There are situations where you may wish to do that in your application.
+The localNotification object itself, JavaScript object itself, has these properties.
+It takes a title, a body, a data.
+So, these are the three things that you would expect in a local notification.
+The sound, if you are putting it on either Android or iOS, you can supply the sound as a parameter.
+So, the sound will be generated when the local notification is put.
+Then, typically, the notification sound that you select on your device will be sounded when the notification is put into the notification bar.
+On Android, you can even specify an icon to be used, the color of the notification to be used, a priority for the notification to be used,
+whether the notification should be sticky, meaning that it cannot be dismissed from the notification bar,
+whether you wish to vibrate the device when the notification is put there, any link to your app that you want to put in your notification.
+All these can be supplied as parameters, but these are useful only in an Android device.
+Now, with this quick understanding of how you can generate local notifications,
+let's take a look at an example of how local notifications are going to be used within our application.
+Going to our application, as we recall, we had generated the reserve table function earlier.
+Now, when I submit a request for a reservation like this, so let me select a date and a time, and then submit a reservation request,
+and keep a watch on the notification bar, and then you will immediately see a notification being put in the notification bar.
+So, when you drag down the notification bar, you would notice a new notification added by our application into the notification bar here.
+So, that is an example of the use of local notifications within our application.
+
+Exercise (Instructions): Local Notifications
+
+Objectives and Outcomes
+In this exercise you will configure your app to make use of notifications support from Expo SDK.
+You will then generate local notifications.
+At the end of this exercise you will be able to:
+1.Configure your app to use notification support from Expo SDK
+2.Generate local notifications in your app
+
+In this exercise, we're going to create a Local Notification when the user submits the reservation form
+and then put that information into the Notification Bar of our device.
+
+Local Notifications:
+  First install:
+    expo install expo-permissions
+    expo install expo-notifications
+  Open ReservationComponent.js and update it.
+  Save all the changes and do a Git commit with the message "Local Notifications".
+
+Conclusions
+In this exercise you learnt to configure your app to use notifications support from Expo SDK and generate local notifications.
+
