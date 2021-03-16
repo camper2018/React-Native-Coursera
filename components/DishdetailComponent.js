@@ -8,6 +8,7 @@ import {
   Button,
   Alert,
   PanResponder,
+  Share,
 } from "react-native";
 import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
@@ -16,6 +17,7 @@ import { postFavorite } from "../redux/ActionCreators";
 import { postComment } from "../redux/ActionCreators";
 import { LogBox } from "react-native";
 import * as Aminatable from "react-native-animatable";
+// import { StyleSheet } from "react-native";
 // To ignore warnings
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation",
@@ -128,6 +130,18 @@ const RenderDish = (props) => {
       },
     })
   ).current;
+  const shareDish = (title, message, url) => {
+    Share.share(
+      {
+        title: title,
+        message: title + ": " + message + " " + url,
+        url: url,
+      },
+      {
+        dialogTitle: "Share " + title,
+      }
+    );
+  };
   if (dish != null) {
     return (
       <Aminatable.View
@@ -179,6 +193,17 @@ const RenderDish = (props) => {
               type="font-awesome"
               color="#512DA8"
               onPress={props.toggleModal}
+            />
+            <Icon
+              raised
+              reverse
+              name="share"
+              type="font-awesome"
+              color="#51D2A8"
+              style={{ flex: 1 }}
+              onPress={() =>
+                shareDish(dish.name, dish.description, baseUrl + dish.image)
+              }
             />
           </View>
         </Card>
