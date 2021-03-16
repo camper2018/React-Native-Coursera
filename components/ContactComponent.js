@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Text } from "react-native";
-import { Card } from "react-native-elements";
+import { Card, Button, Icon } from "react-native-elements";
 import * as Aminatable from "react-native-animatable";
-function RenderContact() {
+import * as MailComposer from "expo-mail-composer";
+function RenderContact(props) {
   return (
     <Aminatable.View animation="fadeInDown" duration={2000} delay={1000}>
       <Card>
@@ -14,10 +15,27 @@ function RenderContact() {
         <Text style={{ margin: 10 }}>Tel: +852 1234 5678</Text>
         <Text style={{ margin: 10 }}>Fax: +852 8765 4321</Text>
         <Text style={{ margin: 10 }}>Email:confusion@food.net</Text>
+        <Button
+          title="Send Email"
+          buttonStyle={{ backgroundColor: "#512DA8" }}
+          icon={<Icon name="envelope-o" type="font-awesome" color="white" />}
+          onPress={props.sendMail}
+        />
       </Card>
     </Aminatable.View>
   );
 }
-const Contact = () => <RenderContact />;
+class Contact extends Component {
+  sendMail() {
+    MailComposer.composeAsync({
+      recipients: ["confusion@food.net"],
+      subject: "Enquiry",
+      body: "To whom it may concern:",
+    });
+  }
+  render() {
+    return <RenderContact sendMail={this.sendMail} />;
+  }
+}
 
 export default Contact;
