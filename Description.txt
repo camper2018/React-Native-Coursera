@@ -1324,3 +1324,75 @@ Local Notifications:
 Conclusions
 In this exercise you learnt to configure your app to use notifications support from Expo SDK and generate local notifications.
 
+Social Sharing:
+Objectives and Outcomes
+In this lesson you will learn about social sharing of information from your application. You will learn about sharing information through email, and to your social media accounts. At the end of this exercise you will be able to:
+1.Use Expo SDK MailComposer to enable sending email using the native email application
+2.Enable sharing of information to social media sites using the React Native Share API
+
+Exercise (Instructions): Sending Email
+
+Objectives and Outcomes
+In this exercise you will use the Expo SDK MailComposer to enable your application to send emails using the native email application on the device.
+At the end of this exercise you will be able to:
+1.Set up the your application to use MailComposer
+2.Configure your application to open an email composer window with some information filled-in when the user clicks a button
+
+Sending Email:
+  First, install expo-mail-composer as:
+    expo install expo-mail-composer
+  Then open ContactComponent.js and update it
+  Save all the changes and do a Git commit with the message "Sending Email".
+
+Conclusions
+In this exercise you configured the MailComposer from Expo SDK to enable your app to send email
+
+Exercise (Instructions): Social Sharing
+Objectives and Outcomes
+In this exercise you will use the React Native Share API to enable your application to share information to your social media accounts.
+At the end of this exercise you will be able to:
+
+1.Set up the Share API
+2.Configure your application to share information to your Social Media accounts by using react-native "Share" API
+
+1.Social Sharing
+  Open DishdetailComponent.js and update it.
+  Save all the changes and do a Git commit with the message "Social Sharing".
+
+Conclusions
+In this exercise you used the Share API to enable social sharing in your app
+
+Picking an Image:
+Objectives and Outcomes
+In this lesson you will learn to use the Expo SDK ImagePicker API to enable your application to obtain an image to use within your application.
+At the end of this exercise you will be able to:
+1.Use the ImagePicker API from Expo SDK
+2.Enable your application to obtain an image from the camera
+
+In this exercise, we'll look at the use of the image picker that enables us to capture a picture from the camera, or even select from the devices gallery or the photo album on our device.
+In this exercise we will explore the use of the image picker from Expo to be able to capture the image using the camera.
+In the assignment you will explore the use of the image picker for selecting an image from the gallery or the photo album on your device.
+In addition, in this exercise we will also learn how to make use of the bottom tab navigator from React navigation to set up tabbed navigation.
+To get started on this exercise, let's now go to that login component.
+And in the login component, I will set it up such that it will have a tabbed navigation setup in there.
+And then also enable me to show, as you recall they have already created the login form here. We will also create one more form here for user registration.
+And in the user registration form, we will provide an option for the user to be able to upload an image of the user to their profile that later on we will later on we will be able to store on their server side.
+
+Exercise (Instructions): Picking an Image:
+Objectives and Outcomes
+
+In this exercise you will use the ImagePicker API from Expo SDK to access the camera to obtain a picture for use in our app.
+At the end of this exercise you will be able to:
+1.Configure your app to use the ImagePicker
+2.Obtain a picture from the Camera using the ImagePicker
+
+Obtaining a Picture from the Camera:
+  Install :
+    yarn add @react-navigation/bottom-tabs
+    expo install expo-image-picker
+  Open LoginComponent.js and update its content.
+  Then, open MainComponent.js and update it.
+  Save all the changes and do a Git commit with the message "Picking an Image".
+
+Conclusions
+In this exercise we use the ImagePicker API to obtain an image from the camera.
