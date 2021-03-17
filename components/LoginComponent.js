@@ -7,6 +7,8 @@ import * as Permissions from "expo-permissions";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { baseUrl } from "../shared/baseUrl";
 import { NavigationContainer } from "@react-navigation/native";
+import * as ImageManipulator from "expo-image-manipulator";
+import { Asset } from "expo-asset";
 
 class LoginTab extends Component {
   constructor(props) {
@@ -119,7 +121,7 @@ class RegisterTab extends Component {
   getImageFromCamera = async () => {
     const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
     const cameraRollPermission = await Permissions.askAsync(
-      Permissions.CAMERA_ROLL
+      Permissions.MEDIA_LIBRARY
     );
     if (
       cameraPermission.status === "granted" &&
@@ -130,7 +132,7 @@ class RegisterTab extends Component {
         aspect: [4, 3],
       });
       if (!capturedImage.cancelled) {
-        this.setState({ imageUrl: capturedImage.uri });
+        this.processImage(capturedImage.uri);
       }
     }
   };
@@ -146,6 +148,20 @@ class RegisterTab extends Component {
       ).catch((error) => console.log("Could not save user info ", error));
     }
   }
+  processImage = async (imageUri) => {
+    let processedImage = await ImageManipulator.manipulateAsync(
+      imageUri,
+      [
+        // The height of the image will automatically set to 300 to maintain the aspect ratio.
+        // So the image will be 400 by 300 pixels by default, because you already adjusted the aspect ratio [4:3] in this get image from camera module where we specified aspect ratio already.
+        { resize: { width: 400 } },
+      ],
+      // when it obtains from the ImagePicker, the ImagePicker gives you the image in JPEG format.
+      // So we'll convert that into, PNG format in this image manipulator.
+      { format: "png" }
+    );
+    this.setState({ imageUrl: processedImage.uri });
+  };
   render() {
     return (
       <ScrollView>
