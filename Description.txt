@@ -1396,3 +1396,109 @@ Obtaining a Picture from the Camera:
 
 Conclusions
 In this exercise we use the ImagePicker API to obtain an image from the camera.
+
+Exercise (Instructions): Image Manipulator
+
+Objectives and Outcomes
+In this exercise we will use the ImageManipulator API from Expo SDK to edit the image that we obtain from the camera.
+At the end of this exercise you will be able to:
+1. Use the ImageManipulator API to edit an image
+
+1.Using the ImageManipulator
+  Install expo modules:
+    expo install expo-image-manipulator
+    expo install expo-asset
+  Open LoginComponent.js and update it.
+  Save the changes and do a Git commit with the message "Image Manipulator".
+
+Conclusions
+In this exercise you will use the ImageManipulator API to modify the image.
+
+Network Info:
+Objectives and Outcomes
+In this lesson you will use the NetInfo API from React Native to access network information. At the end of this lesson you will be able to:
+1.Use the NetInfo API to obtain network information
+2.Respond to changes in the network information
+
+Exercise (Instructions): Network Info
+Sometimes the mobile device may lose connectivity, and maybe the user turns off the network connectivity of the mobile device.
+So, when your application is running, you may wish to detect all these changes to the connectivity of the device,
+and then from within your application if you expect to have a connection to be able to do the operations within your application,
+then you should be able to handle any changes to the network connectivity appropriately within your application.
+This is where the Network Info API from React Native is useful to detect changes to the network connectivity.
+The network connectivity on mobile devices can be unpredictable at times, and you can easily lose connectivity depending on where you are at any given point of time,
+and even as a function of time, and place you may have or not have connectivity to the network.
+So, you need to be able to check dynamically for any changes to the network connectivity, and then appropriately respond to those changes.
+Maybe within your application you may support an offline operation, or at least provide access to a limited set of capabilities within your application when the device is offline,
+and then when the device gets reconnected to the network may be you will synchronize any changes that the user makes within the app to a server where the data is persisted, and so on.
+So, all these need to be handled appropriately within your application.
+This means that you should be able to detect network information, and any changes to the network information.
+How do we do that in our React Native application?
+The network information aspect in a React Native application can be obtained through the NetInfo API that React Native supports.
+This exposes the information about the online and offline status of your device.
+The connection type for your device will be specified typically in terms of none, WiFi, cellular and unknown.
+An effective connection type could be specified even further by saying it's a 2G connection, a 3G connection, a 4G connection, or a unknown connections.
+The Network Info API supports methods like addEventListener which will allow you to listen to an event.
+And the typical event that you listen to is the connectionChange event.
+So, when you register a handler for a connectionChange event, the handler itself will be notified of any changes to the network connection.
+Within the handler, you will be delivered with two piece of information, the Connection Type and the EffectiveConnectionType.
+ So, checking on the ConnectionType and EffectiveConnectionType, you can then recognize what kind of a connection you have.
+So, if the ConnectionType says none, that means that you have lost internet connectivity, if the connection type is WiFi that means that you are connected to the WiFi network, if it is connected to a cellular network then the ConnectionType will be set to cellular, and so on.
+So, your handler will receive this information, and then you respond appropriately.
+Now, typically, when you're leaving your application you would normally remove the EventListener.
+The EventListener should be listening only when your app is running on the device, when your app exits then you should stop listening to the events appropriately,
+because otherwise you will be wasting the battery on the device unnecessarily.
+You can call this method called getConnectionInfo to get the initial connection info on the device.
+You can even check to see if the connection is expensive.
+So, maybe certain operations you may not allow the user to perform them on expensive network connectivity like for 4G and so on.
+Maybe you will expect the user to have a WiFi connection before you allow them to be able to access these things,
+because these days the mobile network operators charge you an arm and a leg for even one megabyte of data.
+So, you may wish to not allow access to, or downloading large amounts of data when you are connected through a mobile network,
+but instead wait for a Wi-Fi connection before you proceed ahead with the upload, or download of large amounts of data.
+So, all these can be easily checked using the NetInfo object.
+In the exercise in this lesson, we will look at the use of the various methods from the NetInfo API to be able to respond to changes in the network information.
+
+Objectives and Outcomes
+In this exercise you will use the NetInfo API from React Native to access network information. At the end of this exercise you will be able to:
+1.Use the NetInfo API to obtain network information
+2.Respond to changes in the network information
+
+1.Network Info
+  expo install @react-native-community/netinfo
+  Open MainComponent.js and update it.
+  The ToastAndroid for showing message on the screen only works for android.
+  Find another equivalent for ios.
+  Save the changes and do a Git commit with the message "Network Info".
+
+Conclusions
+In this exercise you use the NetInfo API to obtain network information and then respond to changes in network connectivity
+
+Assignment 4:
+Accessing Native Capabilities of Devices: The Expo SDK:
+The final assignment concentrates on Expo SDK and the use of the API for accessing the native device capabilities.
+You can find the links to these API in the additional resources.
+In this assignment you will enhance the application to use an image from the photo library on your device using the ImagePicker API.
+Also, you will access the device calendar and add an event to it from the app.
+
+This assignment consists of two tasks:
+
+Task 1
+
+In this task you will make use of the Expo SDK ImagePicker API to enable your application to fetch an image from the photo library.
+
+Update LoginComponent.js to set up a function named getImageFromGallery() that fetches the image from the photo library on the device using the ImagePicker API support. Details of setting up the source to be the Photo Library can be found in the API documentation.
+Add a new button named Gallery that when clicked will initiate the process to enable the user to select a picture from the photo library using the ImagePicker API.
+Once the image is picked, it must be processed through the ImageManipulator to obtain a resized PNG version of the image as we did in the exercise.
+Task 2
+
+In this task you will insert a new Calendar event into the default calendar on the mobile device for the table reservation. You will use the Calendar API from Expo SDK for this. You will implement this in the ReservationComponent.js file.
+
+When the user submits the reservation form, you will obtain the details of the reservation in the handleReservation() function.
+Implement a new function named obtainCalendarPermission() that will ask for permission to access the calendar on the device. The corresponding permission is Permission.CALENDAR.
+Implement another function named addReservationToCalendar() that receives the date information as a parameter. This function is invoked from the handleReservation() function.
+You should use the createEventAsync() function from the Calendar API to insert the event into the default calendar (Calendar.DEFAULT). This function takes a title, the start and end time, timezone and location as the parameters.
+Use 'Con Fusion Table Reservation' as the title of the inserted event
+To specify the start Date and end Date, you can convert the Date ISO string into a Date object by using new Date(Date.parse(date)). Furthermore, the Date.parse() gives you the date value in milliseconds. You can set up the end time by adding 2 hours (2*60*60*1000) to the milliseconds and use it to generate the Date object corresponding to the end time of the event.
+For time zone use 'Asia/Hong_Kong', and the location as '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong'
+
+

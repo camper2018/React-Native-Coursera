@@ -8,6 +8,7 @@ import {
   ScrollView,
   Image,
   StyleSheet,
+  ToastAndroid,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
@@ -31,7 +32,8 @@ import {
   fetchPromos,
   fetchLeaders,
 } from "../redux/ActionCreators";
-
+import NetInfo from "@react-native-community/netinfo";
+// import Toast from "react-native-simple-toast";
 const mapStateToProps = (state) => {
   return {};
 };
@@ -381,12 +383,74 @@ function MainDrawerScreen() {
 }
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // type: "",
+      // isConnected: false,
+    };
+  }
+  handleConnectivityChange = (connectionInfo) => {
+    switch (connectionInfo.type) {
+      case "none":
+        console.log("You are now offline!");
+        ToastAndroid.show("You are now offline!", ToastAndroid.LONG);
+        break;
+      case "wifi":
+        console.log("You are now connected to WiFi!");
+        ToastAndroid.show("You are now connected to WiFi!", ToastAndroid.LONG);
+        break;
+      case "cellular":
+        console.log("You are now connected to Cellular!");
+        ToastAndroid.show(
+          "You are now connected to Cellular!",
+          ToastAndroid.LONG
+        );
+        break;
+      case "unknown":
+        console.log("You now have unknown connection!");
+        ToastAndroid.show(
+          "You now have unknown connection!",
+          ToastAndroid.LONG
+        );
+        break;
+      case "other":
+        console.log("You now have other connection!");
+        break;
+      default:
+        break;
+    }
+  };
+
   componentDidMount() {
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
+    NetInfo.fetch().then((state) => {
+      console.log("Connection type", state.type);
+      console.log("Is connected?", state.isConnected);
+      console.log(`Initial Network Connectivity Type: ${state.type}`);
+      console.log(JSON.stringify(state.details));
+      ToastAndroid.show(
+        "Initial Network Connectivity Type: " +
+          state.type +
+          ", effectiveType: " +
+          state.details,
+        ToastAndroid.LONG
+      );
+    });
+    //Subscribing to network updates
+
+    this.netinfoUnsubscribe = NetInfo.addEventListener((state) =>
+      this.handleConnectivityChange(state)
+    );
   }
+  //Unsubscribing to updates
+  componentWillUnmount() {
+    this.netinfoUnsubscribe();
+  }
+
   render() {
     return (
       <NavigationContainer
