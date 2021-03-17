@@ -6,8 +6,8 @@ import {
   StyleSheet,
   Switch,
   Button,
-  Modal,
   Alert,
+  Platform,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Picker } from "@react-native-community/picker";
@@ -15,10 +15,7 @@ import moment from "moment";
 import * as Animatable from "react-native-animatable";
 import * as Permissions from "expo-permissions";
 import * as Notifications from "expo-notifications";
-// We need Permissions from the device platform in order to access the Notification Bar.
-// So, we will first ask for Permissions to access the Notification Bar
-// and then after that we will be able to put the Notifications.
-// So, we will import Permissions and Notifications from Expo.
+import * as Calendar from "expo-calendar";
 
 class Reservation extends Component {
   constructor(props) {
@@ -55,7 +52,8 @@ class Reservation extends Component {
   handleConfirm(date) {
     this.hideDatePicker();
     this.setState({
-      date: moment(date).format("MMMM Do YYYY hh:mm A").toString(),
+      // date: moment(date).format("MMMM Do YYYY hh:mm A").toString(),
+      date: date,
     });
   }
   handleReservation() {
@@ -74,6 +72,7 @@ class Reservation extends Component {
           text: "OK",
           onPress: () => {
             this.presentLocalNotification(this.state.date);
+            this.addReservationToCalendar(this.state.date);
             this.resetForm();
           },
         },
@@ -92,7 +91,7 @@ class Reservation extends Component {
     let permission = await Permissions.getAsync(
       Permissions.USER_FACING_NOTIFICATIONS
     );
-    console.log(permission.status);
+
     if (permission.status !== "granted") {
       permission = await Permissions.askAsync(
         Permissions.USER_FACING_NOTIFICATIONS
@@ -123,6 +122,51 @@ class Reservation extends Component {
         seconds: 10,
       },
     });
+  }
+  obtainCalendarPermission = async () => {
+    const permission = await Permissions.askAsync(Permissions.CALENDAR);
+    if (permission.status !== "granted") {
+      permission = await Permissions.askAsync(Permissions.CALENDAR);
+      if (permission.status !== "granted") {
+        Alert.alert("Permission not granted to access Calender");
+      }
+    }
+    return permission;
+  };
+
+  obtainDefaultCalendarId = async () => {
+    let calendar = null;
+    if (Platform.OS === "ios") {
+      // ios: get default calendar
+      calendar = await Calendar.getDefaultCalendarAsync();
+    } else {
+      // Android: get default calendar
+      const calendars = await Calendar.getCalendarsAsync(
+        Calendar.EntityTypes.EVENT
+      );
+      calendar = calendars
+        ? calendars.find((cal) => cal.isPrimary) || calendars[0]
+        : null;
+    }
+    return calendar ? calendar.id : null;
+  };
+
+  async addReservationToCalendar(date) {
+    await this.obtainCalendarPermission();
+    let dateInMs = Date.parse(date);
+    let startDate = new Date(dateInMs);
+    let endDate = new Date(dateInMs + 2 * 60 * 60 * 1000);
+
+    const defaultCalId = await this.obtainDefaultCalendarId();
+    await Calendar.createEventAsync(defaultCalId, {
+      title: "Con Fusion Table Reservation",
+      startDate: startDate,
+      endDate: endDate,
+      timeZone: "Asia/Hong_Kong",
+      location:
+        "121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong",
+    });
+    Alert.alert("Event created in your default calender!");
   }
   render() {
     return (
@@ -181,43 +225,6 @@ class Reservation extends Component {
             />
           </View>
         </Animatable.View>
-
-        {/* <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.state.showModal}
-          onDismiss={() => {
-            this.toggleModal();
-            this.resetForm();
-          }}
-          onRequestClose={() => {
-            this.toggleModal();
-            this.resetForm();
-          }}
-        >
-          <View style={styles.modal}>
-            <Text style={styles.modalTitle}>Your Reservation</Text>
-            <Text style={styles.modalText}>
-              Number of Guests: {this.state.guests}
-            </Text>
-            <Text style={styles.modalText}>
-              Smoking? : {this.state.smoking ? "Yes" : "No"}
-            </Text>
-            <Text style={styles.modalText}>
-              When: {this.state.date.toString()}
-            </Text>
-            <View style={{ backgroundColor: "#512DA8" }}>
-              <Button
-                onPress={() => {
-                  this.toggleModal();
-                  this.resetForm();
-                }}
-                color="white"
-                title="Close"
-              />
-            </View>
-          </View>
-        </Modal> */}
       </ScrollView>
     );
   }

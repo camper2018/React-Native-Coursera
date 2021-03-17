@@ -117,6 +117,7 @@ class RegisterTab extends Component {
       remember: false,
       imageUrl: baseUrl + "images/logo.png",
     };
+    this.processImage = this.processImage.bind(this);
   }
   getImageFromCamera = async () => {
     const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
@@ -162,6 +163,32 @@ class RegisterTab extends Component {
     );
     this.setState({ imageUrl: processedImage.uri });
   };
+  getImageFromGallery = async () => {
+    const mediaPermission = await Permissions.askAsync(
+      Permissions.MEDIA_LIBRARY
+    );
+    if (mediaPermission.status === "granted") {
+      let capturedImage = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!capturedImage.cancelled) {
+        this.processImage(capturedImage.uri);
+      }
+    }
+    // ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   aspect: [4, 3],
+    //   quality: 1,
+    // }).then((result) => {
+    //   if (!result.cancelled) {
+    //     this.processImage(result.uri);
+    //   }
+    // });
+  };
   render() {
     return (
       <ScrollView>
@@ -172,7 +199,16 @@ class RegisterTab extends Component {
               loadingIndicatorSource={require("./images/logo.png")}
               style={styles.image}
             />
-            <Button title="Camera" onPress={this.getImageFromCamera} />
+            <Button
+              title="Camera"
+              onPress={this.getImageFromCamera}
+              style={{ margin: 2 }}
+            />
+            <Button
+              title="Gallery"
+              onPress={this.getImageFromGallery}
+              style={{ margin: 2 }}
+            />
           </View>
           <Input
             placeholder="Username"

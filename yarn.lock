@@ -3166,6 +3166,11 @@ expo-asset@~8.2.1:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-calendar@~8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/expo-calendar/-/expo-calendar-8.6.0.tgz#06fc8768550d94948344a593b9d184808fba5266"
+  integrity sha512-giProL2KlRAUunSFMzEybv54AAlrgagEgijmyOnZ+KOviOYEqP4wh0J5/O8sBlpx6LDh5JDwNdNM6jl+8HHZ7g==
+
 expo-constants@9.3.1:
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.3.1.tgz#1cab4896ea5e626fc7f19f49893526c94b481443"
@@ -5602,11 +5607,6 @@ react-native-screens@~2.15.2:
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.2.tgz#a449700e895b462937211ec72ed6f09652758f06"
   integrity sha512-CagNf2APXkVoRlF3Mugr264FbKbrBg9eXUkqhIPVeZB8EsdS8XPrnt99yj/pzmT+yJMBY0dGrjXT8+68WYh6YQ==
-
-react-native-simple-toast@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-native-simple-toast/-/react-native-simple-toast-1.1.3.tgz#4d0835891fe5c9342341fc4a88ed01ebb1a34bd5"
-  integrity sha512-bkZy25axqlU4L6IoTysSl5KOQA7qdxzivbXz/L/yAw9g9fENxjzYvUUtv5wWtgq7mzOe5HiJ7GCQrOl3MhIevQ==
 
 react-native-size-matters@^0.3.1:
   version "0.3.1"
