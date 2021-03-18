@@ -33,7 +33,7 @@ import {
   fetchLeaders,
 } from "../redux/ActionCreators";
 import NetInfo from "@react-native-community/netinfo";
-
+import * as Notifications from "expo-notifications";
 // import Toast from "react-native-simple-toast";
 const mapStateToProps = (state) => {
   return {};
@@ -386,6 +386,15 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.unsubscribe;
+    Notifications.setNotificationHandler({
+      handleNotification: async () => {
+        return {
+          shouldShowAlert: true,
+          shouldPlaySound: true,
+          shouldSetBadge: true,
+        };
+      },
+    });
   }
   handleConnectivityChange = (connectionInfo) => {
     switch (connectionInfo.type) {

@@ -110,7 +110,7 @@ class Reservation extends Component {
         body: "Reservation for " + date + " requested",
         ios: {
           sound: true,
-          _displayInForeground: true,
+          vibrate: true,
         },
         android: {
           sound: true,
@@ -118,10 +118,11 @@ class Reservation extends Component {
           color: "#512DA8",
         },
       },
-      trigger: {
-        repeats: false,
-        seconds: 10,
-      },
+      // trigger: {
+      //   repeats: false,
+      //   seconds: 10,
+      // },
+      trigger: null,
     });
   }
   obtainCalendarPermission = async () => {
