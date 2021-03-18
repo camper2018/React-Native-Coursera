@@ -178,16 +178,6 @@ class RegisterTab extends Component {
         this.processImage(capturedImage.uri);
       }
     }
-    // ImagePicker.launchImageLibraryAsync({
-    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //   allowsEditing: true,
-    //   aspect: [4, 3],
-    //   quality: 1,
-    // }).then((result) => {
-    //   if (!result.cancelled) {
-    //     this.processImage(result.uri);
-    //   }
-    // });
   };
   render() {
     return (

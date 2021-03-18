@@ -1501,4 +1501,174 @@ Use 'Con Fusion Table Reservation' as the title of the inserted event
 To specify the start Date and end Date, you can convert the Date ISO string into a Date object by using new Date(Date.parse(date)). Furthermore, the Date.parse() gives you the date value in milliseconds. You can set up the end time by adding 2 hours (2*60*60*1000) to the milliseconds and use it to generate the Date object corresponding to the end time of the event.
 For time zone use 'Asia/Hong_Kong', and the location as '121, Clear Water Bay Road, Clear Water Bay, Kowloon, Hong Kong'
 
+Building and Deployment:
 
+Objectives and Outcomes
+In this lesson you will learn about Webpack and how react-scripts uses webpack to package your React application to create a distribution folder.
+At the end of this exercise you will be able to:
+
+
+1.Understand the Webpack way of packaging applications into bundles
+2.Use react-scripts to build a distribution folder with your React application bundled using Webpack
+
+Buildingn and Deployment:
+Building Standalone Apps:
+Now that we have completed building the React Native Application,
+you will be curious about how you can build your Application and then deploy it to the iTunes Store or the Google Play Store.
+Now, for this, you need to build the Android APK file or the iOS IPA file.
+Now, Expo provides many resources for us online and online services that enable you to automatically build these for you without having to install Xcode or using Android Studio.
+So, in this exercise, we're going to pursue that approach for building an application using the Expo's online services.
+To make use of the online services from Expo, we need to sign up for an Expo account.
+Now, before we do that, we first download and install the XDE desktop tool that is available from Expo.
+The XDE provides a Expo development environment. That is also another way of getting started with a React Native Application instead of using the Create React Native App that we have used in this course.
+Now, both will lead you to the same point as I will explain in short while later.
+Now, the first step for you to do is to download the XDE and install it on your computer for the specific OS from the links given.
+In this XDE, you can register for an Expo account by clicking on the register link there and then fill in your details and then sign up for a account.
+Now, once you complete that process, then you can sign into your account using this Sign In Window here.
+Then you will get to this screen here and then for your React Native project that you've already created, you can simply open that using Expo XDE.
+The Create React Native App project that you've created also is set up such that it can be easily opened in XDE.
+Now, once your project is up and running, you can click on the "Share" button and you'll see the QR code
+and you can scan this QR code using your Expo App and you'll be able to access your React Native Application on your device directly from here.
+So, once you have completed this, then to build the APK files or the IPA files, you need to use the Expo Command-Line Interface called as exp.
+So, you need to install that command line interface : sudo yarn global add exp
+So, once you have completed that, then the next step is to download icon that we will use for our application
+The icon that you will see in the launcher screen for your Android device or in your iOS device.
+So, download the icon.png file that is provided in the exercises resources for this particular exercise and then move that icon.png file into the projects folder.
+Now, once you have completed that, then open the package for JSON file and then make sure that the name here is typed as "confusion".
+We must have set this up when we created our project and also open this file called app.json and then in the app.json file, this is what you will find already configured in the app.json file. To this file, add in these few configurations here. So, I will type the name as "confusion", because that's exactly what we are using the package for JSON file.
+So, the same name should be used in this app.json file. So, we'll configure the name and then we'll configure the icon as "./icon.png".
+then we'll set up the version. Currently, we are doing the 1.0.0 version. So, that's the version that we're setting up here and then we'll set up something called slug.
+The slug gives the name that is going to be used in your Expo account to identify this particular project.
+So, in your Expo account, when you give this name as "confusion", the project will be identified as expo.io@username/confusion.
+Then in addition, we need to configure two more properties called as iOS.
+For iOS, we will configure a property called as bundleIdentifier.
+This is something that the iOS uses when it builds the application and the normal bundle identifier that we would use is the reverse of the domain name for our company, and the specific application.
+Again, that is up to us to decide what to use.
+So, let me add a net.food.confusion.confusion.
+Again, depending on your company's domain name, you would configure this appropriately.
+Similarly, for Android, they would supply what is called as the package name and so this would be supplied here as package.
+Now, if you have done any iOS and Android development, you would understand the package names and all these things that are used by Android studio or Xcode for iOS.
+So, that is what you will configure in the app.json file.
+Once, you have configured this, then, it is time for us to build our a React Native Application and then, build the corresponding APK file.
+Now, in this exercise, I'm going to demonstrate how to build the Android APK file.
+For iOS also, there will be a similar process.
+The instructions are given in the link that is provided in the exercise resources for how to build for iOS.
+I'm just going to demonstrate how to do this for Android.
+So, let me go ahead and save the app.json file.
+Before we go ahead and understand how this whole thing works, again in the expo documentation, you will find a link to a tool of the XDE.
+So, you can go through this link to understand how the XDE is used in in expo development.
+Let me quickly draw your attention to the project lifecycle. This sort of explains to you how this whole development is actually taking place.
+So, in Expo, what we are doing is that if you use Expo XDE, you will set up a new project using Expo XDE.
+That is one way of arriving at the stage where you will be developing your project local.
+The other alternative way of arriving at this point is to use the Create React Native App that we have installed.
+So, both of these parts will land you at the same point where you will begin with the scaffolded out application that is already set up with all the toolings necessary for you, and so that you can develop your project locally.
+Once you have developed your project, then you will publish your project to the server.
+Now, a part of doing this is already done when we configure the app.json file there, and then we'll do the exp build which is the way we will build our APK or our IPA files here and then when you build the APK or IPA files,
+then you're ready to deploy it to the item iTunes Store or the Google Play Store.
+Now, the other part detaching to Expokit.
+I will talk about it a little bit later.
+Now so, in this exercise we're going to go through this step of using exp build to make use of the Expo's online services to build the APK file for our application.
+So, how do we do that? Going back to the terminal.
+At the terminal prompt, since we have already installed exp, let me just verify that I have installed exp here,
+yes indeed exp is installed and it is available at my command prompt.
+You may need to restart your terminal window or command prompt.
+Now look for the exp, the command line tool to be available at the prompt.
+So, I have already restarted by terminal window, so I have exp available at the prompt.
+So, to build our Android APK file at the prompt, you simply type exp build:android, and then, you will let the Expo builder go through the process of building up.
+It's going to ask you a few questions after which it will set up and build the APK file on the Expo's servers and then make the APK file available for you to download.
+So, let's go ahead and start the build and this is going to take quite some time for it to complete its work and again, you have to make sure that you have set up the project correctly.
+You can ignore these warnings, that's not going to cause much issue for us and then, it will go through a certain set of steps, and then build up our application.
+So, as you can see it is building up the JavaScript bundle first, and then once that is done, then it will go to the next step.
+It is building the Android bundle at this moment, so we'll let it go through its steps
+and then it'll start up its building, and you would see a couple of links provided here.
+Now, this is the link where your application is available.
+So, you can go to this link and then you will see this your application on the Expo's server and this link that is provided here is where it will show you the building process as it is going through,
+and this will take quite some time for it to complete.
+So, you have to wait patiently for quite a few minutes or perhaps sometimes an hour in order for this to complete the build.
+So, be very patient, and make sure that you don't lose your internet connection while this is going on.
+So, while the build is going on, I have brought you over to the link that is provided there's and you can already see that the icon has been taken up by my application
+and so, this is where you will contain the details of your application
+and then, as you can see, you can scan this QR code to be able to access the application from the Expo server so this will be a public distribution of your application that you can provide for other people to access your application.
+So and then, if you go to this link there, you would find that your projects, your snacks, favorites, all these are available here.
+Again, you need to sign up for an Expo account for you to be able to access these.
+Similarly, I'm going to take you to the other link that is provided.
+The build's link that is provided for us, and you can see that right there, it is printing out all this information on the screen here to show what is going on behind the scenes
+and as you can see, it's going to take a lot of time before the build is completed,
+so you have to wait for this to complete and when this is completed,
+then you will be able to download from the link here or your link will be printed out on the screen.
+So, you'll be able to view the information there.
+So, you can see what all has been done by Expo for building your application.
+Again, this may not make much sense to you but if you are curious,
+you can watch and see what is going on behind the scenes as as your application is being built,
+and once it finally completes, you will see the completed checkbox here and then you will see the download link here.
+Similarly, when you go to the terminal, you will see the message here saying successfully built a standard on app
+and then you will get this URL here which is exactly the same as the download link that you have seen here.
+So, using either one of these, you can download the APK file that has been built for us by Expo's online service.
+So, let's go ahead and download this APK file.
+Once I downloaded file, then copy the file into my Android device and then went ahead and installed the file on my Android device,
+and you can see that my new application is now installed on my Android device.
+So let me go ahead and start the application.
+Now, when you start the application, then you will see that the application starts up and then starts showing the information.
+Now again, make sure that your json server is up and running on your computer because your application is going to be making use of the json server to obtain the data from the json server in order to show the information within your application.
+So, this is the version of the application that has been compiled by the Expo server and then installed on my computer.
+So, you can see that the application works exactly like our regular application, no difference between this and the app that we have been serving up from our Create React Native App.
+The process for doing this for iOS is pretty similar with some minor changes and the details of how to do it for an iOS device are in the link that is provided in the exercise instructions,
+that will take you to the Expo's documentation where the details are given.
+Similar steps are followed in order to generate the IPA file for iOS.
+We have demonstrated how we can make use of the Expo servers to build our APK file, install it on our device,
+and then use it in our application.
+So this APK file is ready for distribution in Google Play Store.
+With this, we complete this exercise.
+In this exercise, we have seen how we can use the Expo's online services to build and deploy our application to a device.
+
+Exercise (Instructions): Building Standalone Apps
+Objectives and Outcomes
+In this exercise you will learn about how you can use the Expo support to build and deploy your apps to the iTunes and Google Play store using their online services.
+You will understand that this process requires no set up of XCode or Android Studio, and can be done from a Mac, Windows or Linux machines.
+At the end of this exercise you will be able to:
+
+1.Set up Expo XDE and install the Expo CLI named exp and use them to build and deploy your application
+2.Configure your React Native application and then use the online services from Expo to build the Android APK for deployment to the Google Play store
+
+
+Expo XDE, CLI and Expo Account:
+1.Download and install Expo XDE as per the instructions given here in this link:
+  Start Expo XDE and sign up for an account on Expo.
+  You will need an Expo account in order to do the building of the Android APK or iOS IPA files.
+  Then, install the Expo CLI, named exp as shown below:
+    sudo yarn global add exp@54.0.1
+        or
+    sudo npm install -g exp@54.
+    Don't forget to add sudo in front of the commands on Mac and Linux
+    Then, download the icon.png file given above, and put it in the project's root folder.
+
+2.Open the app.json file in the project's root folder and update it
+
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "confusion",
+    "icon": "./icon.png",
+    "version": "1.0.0",
+    "slug": "confusion",
+    "ios": {
+      "bundleIdentifier": "net.food.confusion.confusion"
+    },
+    "android": {
+      "package": "net.food.confusion.confusion"
+    }
+  }
+}
+3.Building the Android APK
+  This link provides the details on how to build your app for both Android and iOS.
+  To build your Android APK, type the following at the prompt:
+    exp build:android
+  Similarly you can build the iOS IPA using "exp build:ios".
+  More specific configurations for iOS build are given in this link.
+    https://docs.expo.io/distribution/building-standalone-apps/?redirected
+  Once the build is completed (after waiting patiently for a long time), then you can download the APK file from the link that will be provided for you by Expo.
+  You can then copy the APK file to your Android device and install it.
+  Alternately if you already have Android Developer tools set up and know how to use adb, then you can just run "adb install <your APK File>".
+
+Conclusions
+  In this exercise you learnt to build and deploy your Android APK for your project.
