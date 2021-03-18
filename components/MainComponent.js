@@ -5,7 +5,7 @@ import {
   Platform,
   View,
   Text,
-  ScrollView,
+  Alert,
   Image,
   StyleSheet,
   ToastAndroid,
@@ -33,6 +33,7 @@ import {
   fetchLeaders,
 } from "../redux/ActionCreators";
 import NetInfo from "@react-native-community/netinfo";
+
 // import Toast from "react-native-simple-toast";
 const mapStateToProps = (state) => {
   return {};
@@ -384,40 +385,46 @@ function MainDrawerScreen() {
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.unsubscribe;
   }
   handleConnectivityChange = (connectionInfo) => {
     switch (connectionInfo.type) {
       case "none":
-        console.log("You are now offline!");
+        // console.log("You are now offline!");
         if (Platform.OS == "android") {
           ToastAndroid.show("You are now offline!", ToastAndroid.LONG);
+        } else {
+          console.log("You are now offline!");
         }
         break;
       case "wifi":
-        console.log("You are now connected to WiFi!");
         if (Platform.OS == "android") {
           ToastAndroid.show(
             "You are now connected to WiFi!",
             ToastAndroid.LONG
           );
+        } else {
+          console.log("You are now connected to WiFi!");
         }
         break;
       case "cellular":
-        console.log("You are now connected to Cellular!");
         if (Platform.OS == "android") {
           ToastAndroid.show(
             "You are now connected to Cellular!",
             ToastAndroid.LONG
           );
+        } else {
+          console.log("You are now connected to Cellular!");
         }
         break;
       case "unknown":
-        console.log("You now have unknown connection!");
         if (Platform.OS == "android") {
           ToastAndroid.show(
             "You now have unknown connection!",
             ToastAndroid.LONG
           );
+        } else {
+          console.log("You now have unknown connection!");
         }
         break;
       default:
@@ -431,10 +438,10 @@ class Main extends Component {
     this.props.fetchPromos();
     this.props.fetchLeaders();
     NetInfo.fetch().then((state) => {
-      console.log("Connection type", state.type);
-      console.log("Is connected?", state.isConnected);
+      // console.log("Connection type", state.type);
+      // console.log("Is connected?", state.isConnected);
       console.log(`Initial Network Connectivity Type: ${state.type}`);
-      console.log(JSON.stringify(state.details));
+      // console.log(JSON.stringify(state.details));
       if (Platform.OS == "android") {
         ToastAndroid.show(
           "Initial Network Connectivity Type: " +
@@ -442,13 +449,6 @@ class Main extends Component {
             ", effectiveType: " +
             state.details,
           ToastAndroid.LONG
-        );
-      } else {
-        console.log(
-          "Initial Network Connectivity Type: " +
-            state.type +
-            ", effectiveType: " +
-            state.details
         );
       }
     });

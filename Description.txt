@@ -1627,15 +1627,15 @@ In this exercise you will learn about how you can use the Expo support to build 
 You will understand that this process requires no set up of XCode or Android Studio, and can be done from a Mac, Windows or Linux machines.
 At the end of this exercise you will be able to:
 
-1.Set up Expo XDE and install the Expo CLI named exp and use them to build and deploy your application
+1.Set up Expo XDE and install the Expo CLI named exp and use them to build and deploy your application:
 2.Configure your React Native application and then use the online services from Expo to build the Android APK for deployment to the Google Play store
 
 
 Expo XDE, CLI and Expo Account:
-1.Download and install Expo XDE as per the instructions given here in this link:
-  Start Expo XDE and sign up for an account on Expo.
+1.Download and install Expo XDE as per the instructions given here in this link: is deprecated now and no longer used.
+  Sign up for an account on Expo.
   You will need an Expo account in order to do the building of the Android APK or iOS IPA files.
-  Then, install the Expo CLI, named exp as shown below:
+  Then, install at projects folder CLI , an Expo CLI named exp as shown below:
     sudo yarn global add exp@54.0.1
         or
     sudo npm install -g exp@54.
